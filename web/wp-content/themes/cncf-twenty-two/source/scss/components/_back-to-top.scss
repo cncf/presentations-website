@@ -1,0 +1,39 @@
+// _back-to-top.scss
+
+.back-to-top {
+	background-color: rgba(0, 0, 0, 0.1);
+	position: fixed;
+	z-index: 10;
+	bottom: 20px;
+	right: 20px;
+	width: 54px;
+	height: 54px;
+	border-radius: 3px;
+	@media (min-width: 1000px) {
+		width: 80px;
+		height: 80px;
+		border-radius: 5px;
+	}
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 1s linear;
+
+	&.is-active {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 1s linear;
+	}
+
+	&:hover {
+		svg,
+		path {
+			stroke: $primary-400;
+		}
+	}
+}

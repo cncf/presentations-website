@@ -1,0 +1,52 @@
+.wp-block-quote {
+	max-width: 900px;
+	border-left: 0 !important;
+	p {
+		font-size: 22px;
+		@media (min-width: 1200px) {
+			font-size: 36px;
+			line-height: 160%;
+		}
+	}
+	cite {
+		display: block;
+		max-width: min(80%, 800px);
+		line-height: 1.2;
+	}
+	&[class*='has-'] {
+		p {
+			font-size: inherit;
+			@media (min-width: 1200px) {
+				font-size: inherit;
+			}
+		}
+	}
+	&.is-style-smaller-quote {
+		p {
+			line-height: 175%;
+			letter-spacing: 0.02em;
+			font-size: 16px;
+			@media (min-width: 1200px) {
+				font-size: 22px;
+				line-height: 160%;
+			}
+		}
+		cite {
+			font-size: 16px;
+		}
+	}
+	&.has-normal-font-size {
+		p {
+			line-height: 175%;
+			letter-spacing: 0.02em;
+			font-size: 16px;
+			@media (min-width: 1200px) {
+				font-size: 22px;
+				line-height: 160%;
+			}
+		}
+		cite {
+			font-size: 16px;
+		}
+	}
+}

@@ -1,0 +1,39 @@
+.report-item {
+	background-color: $white;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	&__image {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		border-bottom: 1px solid $gray-300;
+		display: block;
+	}
+	&__text-wrapper {
+		padding-top: 25px;
+		padding-right: 25px;
+		margin-bottom: 40px;
+		padding-left: 25px;
+		.author-category {
+			margin-bottom: 20px;
+		}
+		.author-category:hover {
+			text-decoration: none;
+		}
+	}
+	&__title {
+		font-size: 20px;
+		line-height: 140%;
+		a {
+			color: $black;
+		}
+		a:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+.report-single {
+	.social-share {
+		margin-top: 70px;
+	}
+}

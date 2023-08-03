@@ -1,0 +1,12 @@
+api_version: 1
+web_docroot: true
+php_version: 7.4
+workflows:
+  sync_code:
+    after:
+      - type: webphp
+        description: 'Push changes back to GitHub if needed'
+        script: private/scripts/quicksilver/quicksilver-pushback/push-back-to-github.php
+# See https://pantheon.io/docs/pantheon-yml#protected-web-paths for usage.
+protected_web_paths:
+  - /wp/xmlrpc.php

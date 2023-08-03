@@ -1,0 +1,136 @@
+// declare all colours.
+
+$white: #ffffff;
+$black: #000000;
+$purple: #4a23cc;
+
+$primary-300: #c53490;
+$primary-400: #d62293; // preferred CTA
+$primary-color: $primary-400;
+
+$tertiary-400: #62a1ff;
+
+// grays.
+$gray-050: #fdfdfd;
+$gray-100: #fcfcfc;
+$gray-200: #f8f8f8;
+$gray-300: #eaeaea;
+$gray-400: #d0d0d0;
+$gray-500: #c4c4c4;
+$gray-700: #747474;
+$gray-800: #828282;
+$gray-900: #464646;
+
+// Menu.
+$shade-01: #dd9ef4;
+$shade-02: #f29996;
+$shade-03: #96b0f2;
+$shade-04: #aff6ed;
+$shade-05: #f6e2af;
+// Home Page Boxes.
+$shade-06: #b1fbde;
+$shade-07: #bed8fe;
+$shade-08: #e2befe;
+$shade-09: #f2f2f2;
+// Pricing Table
+$shade-10: #3177e1;
+$shade-11: #828282;
+$shade-12: #ab9344;
+$shade-13: #293850;
+
+// links.
+$link-color: $primary-400;
+$link-hover: $primary-300;
+
+// forms.
+$error: #b80611;
+
+$body-text-color: $black;
+
+$content-width: 1200px;
+$grid-column-gap: 3%;
+$grid-row-gap: 30px;
+$line-height: 180%;
+
+$cookie-banner-bg: #bff3ff;
+$cookie-banner-text: $black;
+
+// font-stacks.
+$font-primary: 'Clarity City', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, Roboto,
+	Ubuntu, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+$font-code: Hack, 'Fira Code', Consolas, Menlo, Monaco, 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter',
+	'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier,
+	monospace;
+
+$font-serif: 'Source Serif Pro', 'Apple Garamond', 'Baskerville', 'Times New Roman', 'Droid Serif', 'Times',
+	'Source Serif Pro', serif;
+
+@font-face {
+	font-display: fallback;
+	font-family: 'Clarity City';
+	font-weight: 400;
+	font-style: normal;
+	src: local('ClarityCity-Regular'), local('Clarity City'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-400.woff2') format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-400.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-400.ttf') format('ttf');
+}
+
+@font-face {
+	font-display: fallback;
+	font-family: 'Clarity City';
+	font-weight: 600;
+	font-style: normal;
+	src: local('ClarityCity-SemiBold'), local('Clarity City'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-600.woff2') format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-600.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-600.ttf') format('ttf');
+}
+
+@font-face {
+	font-display: fallback;
+	font-family: 'Clarity City';
+	font-weight: 700;
+	font-style: normal;
+	src: local('ClarityCity-Bold'), local('Clarity City'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-700.woff2') format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-700.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-700.ttf') format('ttf');
+}
+
+@font-face {
+	font-display: fallback;
+	font-family: 'Clarity City';
+	font-weight: 800;
+	font-style: normal;
+	src: local('ClarityCity-ExtraBold'), local('Clarity City'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-800.woff2') format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-800.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/ClarityCity-800.ttf') format('ttf');
+}
+
+// Source Serif Pro - Italic 400
+@font-face {
+	font-display: fallback;
+	font-family: 'Source Serif Pro';
+	font-style: italic;
+	font-weight: 400;
+	src: local('SourceSerifPro-It'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v11-latin-italic.woff2') format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v11-latin-italic.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v11-latin-italic.ttf') format('ttf');
+}
+
+// Source Serif Pro - Italic 700
+@font-face {
+	font-display: fallback;
+	font-family: 'Source Serif Pro';
+	font-style: italic;
+	font-weight: 700;
+	src: local('SourceSerifPro-BoldIt'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v15-latin-700italic.woff2')
+			format('woff2'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v15-latin-700italic.woff') format('woff'),
+		url('/wp-content/themes/cncf-twenty-two/source/fonts/source-serif-pro-v15-latin-700italic.ttf') format('ttf');
+}

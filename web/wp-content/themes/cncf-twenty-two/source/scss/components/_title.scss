@@ -1,0 +1,68 @@
+.title-wrapper {
+	padding-top: 70px;
+	padding-bottom: 60px;
+	@media (min-width: 1200px) {
+		padding-top: 90px;
+		padding-bottom: 70px;
+	}
+}
+
+// Case study title - unique, not hooked to Block Editor.
+.is-style-case-study-title {
+	font-weight: 400;
+	max-width: 800px;
+	line-height: 150%;
+	font-size: 40px;
+	color: $white;
+	@media (min-width: 1000px) {
+		font-size: 60px;
+	}
+}
+
+// Project single title - unique, not hooked to Block Editor.
+.is-style-project-single-title {
+	font-weight: 700;
+	max-width: 800px;
+	line-height: 150%;
+	font-size: 40px;
+	@media (min-width: 1000px) {
+		font-size: 60px;
+	}
+}
+
+.author-category,
+.space-slash,
+.parent-link {
+	font-weight: 700;
+	font-size: 9px;
+	line-height: 9px;
+	text-transform: uppercase;
+	display: inline-block;
+	color: $gray-700;
+	letter-spacing: 0.15em;
+	&.has-larger-style {
+		font-size: 12px;
+		line-height: 12px;
+	}
+}
+
+.parent-link-align {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 40px;
+}
+
+.title-wrapper {
+	.author-category,
+	.space-slash,
+	.parent-link {
+		line-height: 150%;
+		font-size: 14px;
+		@media (min-width: 375px) {
+			font-size: 15px;
+		}
+		@media (min-width: 390px) {
+			font-size: 16px;
+		}
+	}
+}
