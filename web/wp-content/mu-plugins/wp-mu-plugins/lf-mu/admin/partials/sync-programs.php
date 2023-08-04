@@ -36,9 +36,10 @@ foreach ( $chapters as $chapter ) {
 			$dt_end = strtotime( $program->end_date );
 			$last_manual_id = 3566;
 
-			if ( $last_manual_id >= (int) $program->id || $dt_end < time() - ( 14 * DAY_IN_SECONDS ) ) {
+			if ( $last_manual_id >= (int) $program->id || $dt_end > time() + DAY_IN_SECONDS ) {
 				// avoid updating programs that ended more than 2 weeks ago to limit computation and
 				// don't mess with existing online programs that were entered manually.
+				// or programs that haven't ended yet.
 				continue;
 			}
 
@@ -46,22 +47,20 @@ foreach ( $chapters as $chapter ) {
 			$lf_webinar_recording_url = '';
 			$lf_webinar_slides_url = '';
 
-			if ( $dt_end < time() + DAY_IN_SECONDS ) {
-				// grab program details for recorded view.
-				$details_data = wp_remote_get( 'https://community.cncf.io/api/event/' . $program->id );
-				if ( is_wp_error( $details_data ) || ( wp_remote_retrieve_response_code( $details_data ) != 200 ) ) {
-					continue;
-				}
+			// grab program details for recorded view.
+			$details_data = wp_remote_get( 'https://community.cncf.io/api/event/' . $program->id );
+			if ( is_wp_error( $details_data ) || ( wp_remote_retrieve_response_code( $details_data ) != 200 ) ) {
+				continue;
+			}
 
-				$details = json_decode( wp_remote_retrieve_body( $details_data ) );
-				$post_content = strip_tags( $details->description );
-				$lf_webinar_recording_url = $details->video_url;
+			$details = json_decode( wp_remote_retrieve_body( $details_data ) );
+			$post_content = strip_tags( $details->description );
+			$lf_webinar_recording_url = $details->video_url;
 
-				if ( $details->slideshare_url ) {
-					preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
-					if ( array_key_exists( 1, $matches ) ) {
-						$lf_webinar_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
-					}
+			if ( $details->slideshare_url ) {
+				preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
+				if ( array_key_exists( 1, $matches ) ) {
+					$lf_webinar_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
 				}
 			}
 
@@ -100,9 +99,6 @@ foreach ( $chapters as $chapter ) {
 			if ( $newid && 'https://community.cncf.io/api/chapter/296/event/' === $chapter ) {
 				wp_set_object_terms( $newid, 'end-user', 'lf-topic', true );
 			}
-		} else {
-			// TODO: Turn any matching CPTs to draft since they may have been cancelled/unpublished.
-			continue;
 		}
 	}
 }
