@@ -168,9 +168,9 @@ class Lf_Mu {
 		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'register_lf_rest_routes' );
 
 		// Hook to save year in a meta fields for filtering.
-		$this->loader->add_action( 'save_post_lf_case_study', $plugin_admin, 'set_case_study_year', 10, 3 );
-		$this->loader->add_action( 'save_post_lf_case_study_cn', $plugin_admin, 'set_case_study_year', 10, 3 );
-		$this->loader->add_action( 'save_post_lf_report', $plugin_admin, 'set_report_year', 10, 3 );
+		// $this->loader->add_action( 'save_post_lf_case_study', $plugin_admin, 'set_case_study_year', 10, 3 );
+		// $this->loader->add_action( 'save_post_lf_case_study_cn', $plugin_admin, 'set_case_study_year', 10, 3 );
+		// $this->loader->add_action( 'save_post_lf_report', $plugin_admin, 'set_report_year', 10, 3 );
 
 		// Sync projects with landscape.
 		$this->loader->add_action( 'lf_sync_projects', $plugin_admin, 'sync_projects' );
@@ -179,10 +179,10 @@ class Lf_Mu {
 		}
 
 		// Sync KTPs with landscape.
-		$this->loader->add_action( 'lf_sync_ktps', $plugin_admin, 'sync_ktps' );
-		if ( ! wp_next_scheduled( 'lf_sync_ktps' ) ) {
-			wp_schedule_event( time(), 'twicedaily', 'lf_sync_ktps' );
-		}
+		// $this->loader->add_action( 'lf_sync_ktps', $plugin_admin, 'sync_ktps' );
+		// if ( ! wp_next_scheduled( 'lf_sync_ktps' ) ) {
+		// 	wp_schedule_event( time(), 'twicedaily', 'lf_sync_ktps' );
+		// }
 
 		// Sync programs with https://community.cncf.io/.
 		$this->loader->add_action( 'cncf_sync_programs', $plugin_admin, 'sync_programs' );
@@ -197,13 +197,13 @@ class Lf_Mu {
 		}
 
 		// Sync KCDs with https://community.cncf.io/.
-		$this->loader->add_action( 'lf_sync_kcds', $plugin_admin, 'sync_kcds' );
-		if ( ! wp_next_scheduled( 'lf_sync_kcds' ) ) {
-			wp_schedule_event( time(), 'twicedaily', 'lf_sync_kcds' );
-		}
+		// $this->loader->add_action( 'lf_sync_kcds', $plugin_admin, 'sync_kcds' );
+		// if ( ! wp_next_scheduled( 'lf_sync_kcds' ) ) {
+		// 	wp_schedule_event( time(), 'twicedaily', 'lf_sync_kcds' );
+		// }
 
 		// Sync people with https://github.com/cncf/people.
-		$this->loader->add_action( 'lf_sync_people', $plugin_admin, 'sync_people' );
+		// $this->loader->add_action( 'lf_sync_people', $plugin_admin, 'sync_people' );
 
 		// Example of how to run a sync locally on demand.
 		// $this->loader->add_action( 'init', $plugin_admin, 'sync_kcds' ); //phpcs:ignore.
@@ -215,9 +215,9 @@ class Lf_Mu {
 
 		$this->loader->add_action( 'manage_lf_webinar_posts_custom_column', $plugin_admin, 'custom_lf_webinar_column', 10, 2 );
 
-		$this->loader->add_filter( 'manage_lf_event_posts_columns', $plugin_admin, 'set_custom_edit_lf_event_columns' );
+		// $this->loader->add_filter( 'manage_lf_event_posts_columns', $plugin_admin, 'set_custom_edit_lf_event_columns' );
 
-		$this->loader->add_action( 'manage_lf_event_posts_custom_column', $plugin_admin, 'custom_lf_event_column', 10, 2 );
+		// $this->loader->add_action( 'manage_lf_event_posts_custom_column', $plugin_admin, 'custom_lf_event_column', 10, 2 );
 
 		$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'add_dashboard_widget_info' );
 
