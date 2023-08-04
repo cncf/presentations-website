@@ -16,10 +16,8 @@ $site_options = get_option( 'lf-mu' );
 
 	<div class="container wrap footer_container" id="inner-footer-container">
 
-		<?php if ( ! is_front_page() || ! $phippy_desktop_png_id ) : ?>
 		<div style="height:70px" aria-hidden="true"
 			class="wp-block-spacer is-style-70-100"></div>
-		<?php endif; ?>
 
 		<?php get_template_part( 'components/newsletter' ); ?>
 
