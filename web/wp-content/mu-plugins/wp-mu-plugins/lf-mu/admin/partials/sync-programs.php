@@ -34,12 +34,10 @@ foreach ( $chapters as $chapter ) {
 			// add/update CPT.
 
 			$dt_end = strtotime( $program->end_date );
-			$last_manual_id = 3566;
 
-			if ( $last_manual_id >= (int) $program->id || $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
-				// avoid updating programs that ended more than 2 weeks ago to limit computation and
-				// don't mess with existing online programs that were entered manually.
-				// or programs that haven't ended yet.
+			if ( $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
+				// avoid updating programs that ended more than 2 weeks ago to limit computation.
+				// don't import programs that haven't ended yet.
 				continue;
 			}
 
