@@ -19,58 +19,6 @@ $site_options = get_option( 'lf-mu' );
 		<div style="height:70px" aria-hidden="true"
 			class="wp-block-spacer is-style-70-100"></div>
 
-		<?php get_template_part( 'components/newsletter' ); ?>
-
-		<div class="horizontal-rule"></div>
-
-		<div style="height:60px" aria-hidden="true"
-			class="wp-block-spacer is-style-40-60"></div>
-
-		<div class="lf-grid">
-			<nav class="width-10/12">
-				<?php
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer_01',
-						)
-					);
-
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer_02',
-						)
-					);
-
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer_03',
-						)
-					);
-
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer_04',
-						)
-					);
-
-					wp_nav_menu(
-						array(
-							'theme_location' => 'footer_05',
-						)
-					);
-					?>
-			</nav>
-
-			<?php if ( isset( $site_options['footer_cta_text'] ) && isset( $site_options['footer_cta_link'] ) && $site_options['footer_cta_text'] && $site_options['footer_cta_link'] ) : ?>
-			<div class="footer__cta">
-				<a href="<?php echo esc_url( get_permalink( $site_options['footer_cta_link'] ) ); ?>"
-					class="wp-block-button__link has-no-padding"><?php echo esc_html( $site_options['footer_cta_text'] ); ?></a>
-			</div>
-			<?php endif; ?>
-		</div>
-		<div style="height:80px" aria-hidden="true"
-			class="wp-block-spacer is-style-30-80"></div>
-
 		<div class="lf-grid">
 
 			<div class="footer__logo-and-hub">
