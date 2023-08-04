@@ -55,7 +55,6 @@ class LF_Enqueue {
 
 		// Style optimizations.
 		if (
-			is_front_page() ||
 			is_singular( 'lf_report' ) ||
 			is_singular( 'post' ) ||
 			is_singular( 'lf_webinar' ) ||
