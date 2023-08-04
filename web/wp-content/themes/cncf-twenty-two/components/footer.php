@@ -27,7 +27,7 @@ $site_options = get_option( 'lf-mu' );
 				if ( isset( $site_options['footer_image_id'] ) && $site_options['footer_image_id'] ) {
 					?>
 
-				<a class="footer__logo show-over-1000" href="/"
+				<a class="footer__logo show-over-1000" href="https://www.cncf.io/"
 					title="<?php echo bloginfo( 'name' ); ?>">
 					<img src="<?php echo esc_url( wp_get_attachment_url( $site_options['footer_image_id'] ) ); ?>"
 						loading="lazy" width="210" height="40"
