@@ -36,7 +36,7 @@ foreach ( $chapters as $chapter ) {
 			$dt_end = strtotime( $program->end_date );
 			$last_manual_id = 3566;
 
-			if ( $last_manual_id >= (int) $program->id || $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
+			if ( $last_manual_id >= (int) $program->id || $dt_end > time() + DAY_IN_SECONDS ) {
 				// avoid updating programs that ended more than 2 weeks ago to limit computation and
 				// don't mess with existing online programs that were entered manually.
 				// or programs that haven't ended yet.
@@ -56,6 +56,11 @@ foreach ( $chapters as $chapter ) {
 			$details = json_decode( wp_remote_retrieve_body( $details_data ) );
 			$post_content = strip_tags( $details->description );
 			$lf_webinar_recording_url = $details->video_url;
+
+			if ( ! $lf_webinar_recording_url ) {
+				// if there is no recording url then skip import.
+				continue;
+			}
 
 			if ( $details->slideshare_url ) {
 				preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
