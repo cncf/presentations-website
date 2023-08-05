@@ -52,7 +52,7 @@ class Lf_Mu_Admin {
 		$this->version     = $version;
 
 		$options       = get_option( $this->plugin_name );
-		$this->webinar = 'online program';
+		$this->webinar = 'presentation';
 	}
 
 	/**

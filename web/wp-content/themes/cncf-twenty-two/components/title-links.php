@@ -9,16 +9,7 @@
  * @since 1.0.0
  */
 
-if ( is_singular( 'lf_webinar' ) ) :
-	?>
-<div class="parent-link-align">
-	<a class="parent-link"
-		href="<?php echo esc_url( get_home_url() ); ?>/online-programs/"
-		title="Go to online programs">Online program</a>
-</div>
-
-	<?php
-elseif ( is_singular( 'lf_human' ) ) :
+if ( is_singular( 'lf_human' ) ) :
 	?>
 <div class="parent-link-align">
 	<a class="parent-link"
