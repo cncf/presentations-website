@@ -32,6 +32,19 @@ endif;
 		</div>
 		<?php } ?>
 
+		<nav class="main-menu">
+			<ul class="main-menu__wrapper">
+				<li class="menu-item-no-children">
+					<a href="/about/"><span>About</span></a>
+				</li>
+				<li class="menu-item-no-children">
+					<a href="/speakers/"><span>Speakers</span></a>
+				</li>
+			</ul>
+
+			<div style="height:60px;" aria-hidden="true"
+				class="wp-block-spacer show-upto-1000">
+			</div>
 
 			<?php if ( isset( $site_options['header_cta_text'] ) && isset( $site_options['header_cta_link'] ) && $site_options['header_cta_text'] && $site_options['header_cta_link'] ) : ?>
 
