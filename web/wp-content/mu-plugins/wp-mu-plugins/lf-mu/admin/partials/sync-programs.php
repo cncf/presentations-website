@@ -35,7 +35,7 @@ foreach ( $chapters as $chapter ) {
 
 			$dt_end = strtotime( $program->end_date );
 
-			if ( $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
+			if ( $dt_end > time() + DAY_IN_SECONDS ) {
 				// avoid updating programs that ended more than 2 weeks ago to limit computation.
 				// don't import programs that haven't ended yet.
 				continue;
