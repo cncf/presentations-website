@@ -20,10 +20,10 @@ if ( $query->have_posts() ) : ?>
 
 	// if filter matches all presentations.
 	if ( $full_count == $query->found_posts ) {
-		echo 'Found ' . esc_html( $query->found_posts ) . ' recorded online programs';
+		echo 'Found ' . esc_html( $query->found_posts ) . ' presentations';
 	} else {
 		// else show partial count.
-		echo 'Showing ' . esc_html( $query->found_posts ) . ' of ' . esc_html( $full_count ) . ' recorded online programs';
+		echo 'Showing ' . esc_html( $query->found_posts ) . ' of ' . esc_html( $full_count ) . ' presentations';
 	}
 	?>
 </p>
@@ -52,7 +52,7 @@ if ( $query->have_posts() ) : ?>
 	while ( $query->have_posts() ) :
 		$query->the_post();
 
-			get_template_part( 'components/presentation-recorded-item' );
+			get_template_part( 'components/presentation-item' );
 
 	endwhile;
 	?>
