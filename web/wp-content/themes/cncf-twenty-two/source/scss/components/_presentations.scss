@@ -1,4 +1,4 @@
-.webinar-upcoming-item {
+.presentation-upcoming-item {
 	background-color: $white;
 	border: 1px solid $gray-300;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@
 	}
 }
 
-.webinar-recorded-item {
+.presentation-recorded-item {
 	background-color: $white;
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
@@ -47,7 +47,7 @@
 		border-top-left-radius: 5px;
 		border-top-right-radius: 5px;
 		&:hover {
-			.webinar-recorded-item__overlay {
+			.presentation-recorded-item__overlay {
 				opacity: 1;
 				transition: opacity 0.25s ease-out;
 			}
@@ -112,7 +112,7 @@
 	}
 }
 
-.webinar-single {
+.presentation-single {
 	&__meta-wrapper {
 		display: flex;
 		flex-direction: column;

@@ -99,19 +99,19 @@ class LF_Utils {
 	}
 
 	/**
-	 * Get DateTime object from webinar date and time
+	 * Get DateTime object from presentation date and time
 	 *
 	 * @param object $date Date object.
 	 * @param string $time Time.
 	 * @param string $time_period AM or PM.
 	 * @param string $timezone TZ.
 	 */
-	public static function get_webinar_date_time( $date, $time, $time_period, $timezone ) {
+	public static function get_presentation_date_time( $date, $time, $time_period, $timezone ) {
 		if ( ! $date ) {
 			return false;
 		}
 
-		// time may not be provided for old webinars.
+		// time may not be provided for old presentations.
 		if ( ! $time ) {
 			$time        = '10:00';
 			$time_period = 'AM';

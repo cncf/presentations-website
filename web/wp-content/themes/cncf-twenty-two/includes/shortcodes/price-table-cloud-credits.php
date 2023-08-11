@@ -54,7 +54,7 @@ function add_cloud_credits_pricing_shortcode() {
 				in Supporter benefits, plus:</p>
 			<ul>
 				<li>Bonus online program slot
-					(live webinar, live stream, or on-demand webinar - your
+					(live presentation, live stream, or on-demand presentation - your
 					choice) to highlight your participation in the program</li>
 				<li>For Certified Kubernetes
 					Providers, CNCF will run conformance tests for your platform

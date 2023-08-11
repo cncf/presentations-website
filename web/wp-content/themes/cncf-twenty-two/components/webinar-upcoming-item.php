@@ -1,8 +1,8 @@
 <?php
 /**
- * Upcoming Webinar Item
+ * Upcoming presentation Item
  *
- * Singular upcoming webinar item.
+ * Singular upcoming presentation item.
  *
  * @package WordPress
  * @subpackage cncf-theme
@@ -13,39 +13,39 @@
 $company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
 
 // registration URL.
-$webinar_reg_url           = get_post_meta( get_the_ID(), 'lf_webinar_registration_url', true );
+$presentation_reg_url           = get_post_meta( get_the_ID(), 'lf_presentation_registration_url', true );
 
-// get webinar date and time.
-$webinar_date = get_post_meta( get_the_ID(), 'lf_webinar_date', true );
-$webinar_start_time        = get_post_meta( get_the_ID(), 'lf_webinar_start_time', true );
-$webinar_start_time_period = get_post_meta( get_the_ID(), 'lf_webinar_start_time_period', true );
-$webinar_timezone          = get_post_meta( get_the_ID(), 'lf_webinar_timezone', true );
-$dat_webinar_start         = Lf_Utils::get_webinar_date_time( $webinar_date, $webinar_start_time, $webinar_start_time_period, $webinar_timezone, true );
-$date_and_time             = $dat_webinar_start->format( 'D F j' );
+// get presentation date and time.
+$presentation_date = get_post_meta( get_the_ID(), 'lf_presentation_date', true );
+$presentation_start_time        = get_post_meta( get_the_ID(), 'lf_presentation_start_time', true );
+$presentation_start_time_period = get_post_meta( get_the_ID(), 'lf_presentation_start_time_period', true );
+$presentation_timezone          = get_post_meta( get_the_ID(), 'lf_presentation_timezone', true );
+$dat_presentation_start         = Lf_Utils::get_presentation_date_time( $presentation_date, $presentation_start_time, $presentation_start_time_period, $presentation_timezone, true );
+$date_and_time             = $dat_presentation_start->format( 'D F j' );
 
-if ( $webinar_reg_url ) {
-	$link_url = $webinar_reg_url;
+if ( $presentation_reg_url ) {
+	$link_url = $presentation_reg_url;
 } else {
 	$link_url = get_the_permalink();
 }
 ?>
-<article class="webinar-upcoming-item has-animation-scale-2">
+<article class="presentation-upcoming-item has-animation-scale-2">
 
 		<?php
-		// Date of Webinar.
+		// Date of presentation.
 		if ( $date_and_time ) :
 			?>
-		<span class="webinar-upcoming-item__date "><?php echo esc_html( $date_and_time ); ?></span>
+		<span class="presentation-upcoming-item__date "><?php echo esc_html( $date_and_time ); ?></span>
 		<?php endif; ?>
 
-		<a class="webinar-upcoming-item__link" href="<?php echo esc_url( $link_url ); ?>"
-				title="<?php the_title_attribute(); ?> on <?php echo esc_html( $date_and_time ); ?>"><h3 class="webinar-upcoming-item__title"><?php esc_html( the_title() ); ?></h3></a>
+		<a class="presentation-upcoming-item__link" href="<?php echo esc_url( $link_url ); ?>"
+				title="<?php the_title_attribute(); ?> on <?php echo esc_html( $date_and_time ); ?>"><h3 class="presentation-upcoming-item__title"><?php esc_html( the_title() ); ?></h3></a>
 
 		<?php
 		// Presented by... Company.
 		if ( $company ) :
 			?>
-		<span class="webinar-upcoming-item__company">Presented by
+		<span class="presentation-upcoming-item__company">Presented by
 			<?php echo esc_html( $company ); ?></span>
 		<?php endif; ?>
 

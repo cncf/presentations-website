@@ -57,7 +57,7 @@ class LF_Enqueue {
 		if (
 			is_singular( 'lf_report' ) ||
 			is_singular( 'post' ) ||
-			is_singular( 'lf_webinar' ) ||
+			is_singular( 'lf_presentation' ) ||
 			is_post_type_archive( 'post' ) ) {
 			wp_dequeue_style( 'search-filter-plugin-styles' );
 		}

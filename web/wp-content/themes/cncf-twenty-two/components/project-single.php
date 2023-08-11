@@ -224,15 +224,15 @@ endif;
 		$programs_args = array(
 			'posts_per_page'     => 3,
 			'ignore_custom_sort' => true,
-			'post_type'          => array( 'lf_webinar' ),
+			'post_type'          => array( 'lf_presentation' ),
 			'post_status'        => array( 'publish' ),
-			'meta_key'           => 'lf_webinar_date',
+			'meta_key'           => 'lf_presentation_date',
 			'order'              => 'DESC',
 			'orderby'            => 'meta_value',
 			'no_found_rows'      => true,
 			'meta_query'         => array(
 				array(
-					'key'     => 'lf_webinar_recording_url',
+					'key'     => 'lf_presentation_recording_url',
 					'value'   => 0,
 					'compare' => '>',
 				),
@@ -277,12 +277,12 @@ more recordings</a></p>
  </symbol>
 </svg>
 
-			<div class="webinars columns-three">
+			<div class="presentations columns-three">
 				<?php
 				while ( $programs_query->have_posts() ) :
 					$programs_query->the_post();
 
-					get_template_part( 'components/webinar-recorded-item' );
+					get_template_part( 'components/presentation-recorded-item' );
 
 		endwhile;
 				?>

@@ -1841,7 +1841,7 @@ to our projects to help make them more successful and sustainable.
 																capability for
 																case
 																studies and CNCF
-																webinars.</li>
+																presentations.</li>
 															<li>More information
 																on
 																all the events

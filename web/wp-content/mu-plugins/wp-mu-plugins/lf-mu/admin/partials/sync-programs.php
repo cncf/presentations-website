@@ -42,8 +42,8 @@ foreach ( $chapters as $chapter ) {
 			}
 
 			$post_content = '';
-			$lf_webinar_recording_url = '';
-			$lf_webinar_slides_url = '';
+			$lf_presentation_recording_url = '';
+			$lf_presentation_slides_url = '';
 
 			// grab program details for recorded view.
 			$details_data = wp_remote_get( 'https://community.cncf.io/api/event/' . $program->id );
@@ -53,9 +53,9 @@ foreach ( $chapters as $chapter ) {
 
 			$details = json_decode( wp_remote_retrieve_body( $details_data ) );
 			$post_content = strip_tags( $details->description );
-			$lf_webinar_recording_url = $details->video_url;
+			$lf_presentation_recording_url = $details->video_url;
 
-			if ( ! $lf_webinar_recording_url ) {
+			if ( ! $lf_presentation_recording_url ) {
 				// if there is no recording url then skip import.
 				continue;
 			}
@@ -63,27 +63,27 @@ foreach ( $chapters as $chapter ) {
 			if ( $details->slideshare_url ) {
 				preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
 				if ( array_key_exists( 1, $matches ) ) {
-					$lf_webinar_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
+					$lf_presentation_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
 				}
 			}
 
 			$params = array(
 				'post_title' => $program->title,
-				'post_type' => 'lf_webinar',
+				'post_type' => 'lf_presentation',
 				'post_status' => 'publish',
 				'post_content' => $post_content,
 				'meta_input' => array(
-					'lf_webinar_date' => substr( $program->start_date, 0, 10 ),
-					'lf_webinar_registration_url' => $program->url,
-					'lf_webinar_recording_url' => $lf_webinar_recording_url,
-					'lf_webinar_slides_url' => $lf_webinar_slides_url,
-					'lf_webinar_timezone' => 'america-los_angeles',
+					'lf_presentation_date' => substr( $program->start_date, 0, 10 ),
+					'lf_presentation_registration_url' => $program->url,
+					'lf_presentation_recording_url' => $lf_presentation_recording_url,
+					'lf_presentation_slides_url' => $lf_presentation_slides_url,
+					'lf_presentation_timezone' => 'america-los_angeles',
 				),
 			);
 
 			$query = new WP_Query(
 				array(
-					'post_type' => 'lf_webinar',
+					'post_type' => 'lf_presentation',
 					'meta_value' => $program->url,
 					'no_found_rows' => true,
 					'update_post_meta_cache' => false,

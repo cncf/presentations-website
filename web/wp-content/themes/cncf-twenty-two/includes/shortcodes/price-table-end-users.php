@@ -150,7 +150,7 @@ title="">See Silver <br class="show-over-1000">Pricing Scale</button></p>
 				<li>Guidance on open source strategy - e.g. donating a project, running an open source program office</li>
 				<li>Recruiting recommendations and DE&I guidance</li>
 				<li>Personalized executive engagement from LF leadership team</li>
-				<li>Exclusive live webinars with CNCF online programs</li>
+				<li>Exclusive live presentations with CNCF online programs</li>
 			</ul>
 		</div>
 

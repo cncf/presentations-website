@@ -14,9 +14,9 @@ get_template_part( 'components/skip-link-target' );
 if ( is_singular( 'lf_case_study' ) || is_singular( 'lf_case_study_cn' ) ) :
 	get_template_part( 'components/case-study-single' );
 
-elseif ( is_singular( 'lf_webinar' ) ) :
+elseif ( is_singular( 'lf_presentation' ) ) :
 	get_template_part( 'components/title' );
-	get_template_part( 'components/webinar-single' );
+	get_template_part( 'components/presentation-single' );
 
 elseif ( is_singular( 'lf_human' ) ) :
 	get_template_part( 'components/title' );

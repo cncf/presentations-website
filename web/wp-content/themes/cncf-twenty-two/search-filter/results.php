@@ -12,8 +12,8 @@
 if ( $query->have_posts() ) {
 	set_query_var( 'query', $query );
 	switch ( $query->query['post_type'] ) {
-		case 'lf_webinar':
-			get_template_part( 'search-filter/webinars' );
+		case 'lf_presentation':
+			get_template_part( 'search-filter/presentations' );
 			break;
 		case 'lf_event':
 			get_template_part( 'search-filter/events' );

@@ -15,8 +15,8 @@
 	max-width: 500px;
 }
 
-#dashboard_right_now a.lf_webinar-count:before,
-#dashboard_right_now span.lf_webinar-count:before {
+#dashboard_right_now a.lf_presentation-count:before,
+#dashboard_right_now span.lf_presentation-count:before {
 	content: '\f236';
 }
 #dashboard_right_now a.lf_event-count:before,

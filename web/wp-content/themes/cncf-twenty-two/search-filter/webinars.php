@@ -2,7 +2,7 @@
 /**
  * Search & Filter Pro
  *
- * Webinars
+ * presentations
  *
  * @package WordPress
  * @subpackage cncf-theme
@@ -15,10 +15,10 @@ if ( $query->have_posts() ) : ?>
 
 <p class="search-filter-results-count">
 	<?php
-	// get total list of webinars.
-	$full_count = $wpdb->get_var( "select count(*) from wp_posts join wp_postmeta on wp_posts.ID = wp_postmeta.post_id where wp_posts.post_type = 'lf_webinar' and wp_posts.post_status = 'publish' and meta_key='lf_webinar_recording_url' and meta_value <> '';" );
+	// get total list of presentations.
+	$full_count = $wpdb->get_var( "select count(*) from wp_posts join wp_postmeta on wp_posts.ID = wp_postmeta.post_id where wp_posts.post_type = 'lf_presentation' and wp_posts.post_status = 'publish' and meta_key='lf_presentation_recording_url' and meta_value <> '';" );
 
-	// if filter matches all webinars.
+	// if filter matches all presentations.
 	if ( $full_count == $query->found_posts ) {
 		echo 'Found ' . esc_html( $query->found_posts ) . ' recorded online programs';
 	} else {
@@ -46,13 +46,13 @@ if ( $query->have_posts() ) : ?>
  </symbol>
 </svg>
 
-<div class="webinars columns-three">
+<div class="presentations columns-three">
 
 	<?php
 	while ( $query->have_posts() ) :
 		$query->the_post();
 
-			get_template_part( 'components/webinar-recorded-item' );
+			get_template_part( 'components/presentation-recorded-item' );
 
 	endwhile;
 	?>

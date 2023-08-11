@@ -1,9 +1,9 @@
 <?php
 /**
- * Upcoming Webinars
+ * Upcoming presentations
  *
  * Usage:
- * [upcoming_webinars count=6]
+ * [upcoming_presentations count=6]
  *
  * @package WordPress
  * @subpackage cncf-theme
@@ -11,18 +11,18 @@
  */
 
 /**
- * Upcoming Webinars shortcode.
+ * Upcoming presentations shortcode.
  *
  * @param array $atts Attributes.
  */
-function add_upcoming_webinars_shortcode( $atts ) {
+function add_upcoming_presentations_shortcode( $atts ) {
 	// Attributes.
 	$atts = shortcode_atts(
 		array(
 			'count' => '6', // set default.
 		),
 		$atts,
-		'upcoming_webinars'
+		'upcoming_presentations'
 	);
 
 	// make sure we have a number.
@@ -36,22 +36,22 @@ function add_upcoming_webinars_shortcode( $atts ) {
 	// setup the arguments.
 	$args  = array(
 		'posts_per_page' => $count,
-		'post_type'      => array( 'lf_webinar' ),
+		'post_type'      => array( 'lf_presentation' ),
 		'post_status'    => array( 'publish' ),
-		'meta_key'       => 'lf_webinar_date',
+		'meta_key'       => 'lf_presentation_date',
 		'order'          => 'ASC',
 		'meta_type'      => 'DATETIME',
 		'orderby'        => 'meta_value',
 		'no_found_rows'  => true,
 		'meta_query'     => array(
 			array(
-				'key'     => 'lf_webinar_date',
+				'key'     => 'lf_presentation_date',
 				'value'   => date_i18n( 'Y-m-d' ),
 				'compare' => '>=',
 				'type'    => 'DATETIME',
 			),
 			array(
-				'key'     => 'lf_webinar_recording',
+				'key'     => 'lf_presentation_recording',
 				'compare' => 'NOT EXISTS',
 			),
 		),
@@ -62,12 +62,12 @@ function add_upcoming_webinars_shortcode( $atts ) {
 
 	if ( $query->have_posts() ) {
 		?>
-<div class="webinars columns-three">
+<div class="presentations columns-three">
 		<?php
 		while ( $query->have_posts() ) :
 			$query->the_post();
 
-			get_template_part( 'components/webinar-upcoming-item' );
+			get_template_part( 'components/presentation-upcoming-item' );
 
 		endwhile;
 		wp_reset_postdata();
@@ -78,7 +78,7 @@ function add_upcoming_webinars_shortcode( $atts ) {
 	} else {
 		?>
 
-		<div class="webinars columns-one">
+		<div class="presentations columns-one">
 			<h3>Sorry, there are no online programs scheduled right now.</h3>
 
 			<div style="height:40px" aria-hidden="true"
@@ -92,4 +92,4 @@ function add_upcoming_webinars_shortcode( $atts ) {
 	$block_content = ob_get_clean();
 	return $block_content;
 }
-add_shortcode( 'upcoming_webinars', 'add_upcoming_webinars_shortcode' );
+add_shortcode( 'upcoming_presentations', 'add_upcoming_presentations_shortcode' );

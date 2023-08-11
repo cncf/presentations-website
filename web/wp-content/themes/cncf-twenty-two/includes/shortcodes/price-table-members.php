@@ -182,7 +182,7 @@ function add_members_pricing_shortcode() {
 					engagement from CNCF and LF leadership teams: <br />- Open
 					source strategy e.g. donating a project, running an open
 					source program office</li>
-				<li>Exclusive live webinars with
+				<li>Exclusive live presentations with
 					CNCF online programs</li>
 			</ul>
 		</div>

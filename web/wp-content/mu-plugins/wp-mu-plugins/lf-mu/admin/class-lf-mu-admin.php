@@ -52,7 +52,7 @@ class Lf_Mu_Admin {
 		$this->version     = $version;
 
 		$options       = get_option( $this->plugin_name );
-		$this->webinar = 'presentation';
+		$this->presentation = 'presentation';
 	}
 
 	/**
@@ -302,20 +302,6 @@ class Lf_Mu_Admin {
 	}
 
 	/**
-	 * Sync KTP data from landscape.
-	 */
-	public function sync_ktps() {
-		include_once 'partials/sync-ktps.php';
-	}
-
-	/**
-	 * Sync KCDs from https://community.cncf.io/ to the events CPT.
-	 */
-	public function sync_kcds() {
-		include_once 'partials/sync-kcds.php';
-	}
-
-	/**
 	 * Get updated view count from YouTube for recorded online programs.
 	 */
 	public function get_program_views() {
@@ -328,7 +314,7 @@ class Lf_Mu_Admin {
 
 		$query = new WP_Query(
 			array(
-				'post_type'      => 'lf_webinar',
+				'post_type'      => 'lf_presentation',
 				'post_status'    => 'publish',
 				'posts_per_page' => 9999,
 			)
@@ -336,7 +322,7 @@ class Lf_Mu_Admin {
 
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			$recording_url = get_post_meta( get_the_ID(), 'lf_webinar_recording_url', true );
+			$recording_url = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
 			if ( ! $recording_url ) {
 				continue;
 			}
@@ -356,7 +342,7 @@ class Lf_Mu_Admin {
 				}
 
 				$views = $vid_stats->items[0]->statistics->viewCount;
-				update_post_meta( get_the_ID(), 'lf_webinar_recording_views', $views );
+				update_post_meta( get_the_ID(), 'lf_presentation_recording_views', $views );
 			}
 		}
 	}
@@ -400,7 +386,7 @@ class Lf_Mu_Admin {
 	 * @param int $items Number.
 	 */
 	public function custom_glance_items( $items = array() ) {
-		$post_types = array( 'lf_webinar', 'lf_event', 'lf_case_study', 'lf_case_study_cn', 'lf_kubeweekly', 'lf_eu_newsletter', 'lf_report' );
+		$post_types = array( 'lf_presentation', 'lf_event', 'lf_case_study', 'lf_case_study_cn', 'lf_kubeweekly', 'lf_eu_newsletter', 'lf_report' );
 
 		foreach ( $post_types as $type ) {
 
@@ -442,17 +428,17 @@ class Lf_Mu_Admin {
 	}
 
 	/**
-	 * Add custom column headers to Webinars
+	 * Add custom column headers to presentations
 	 *
 	 * @param array $columns Admin columns.
 	 */
-	public function set_custom_edit_lf_webinar_columns( $columns ) {
+	public function set_custom_edit_lf_presentation_columns( $columns ) {
 		$date = $columns['date'];
 		unset( $columns['date'] );
 
-		$columns['lf_webinar_date']             = 'Webinar Date';
-		$columns['lf_webinar_registration_url'] = 'Reg URL';
-		$columns['lf_webinar_recording_url']    = 'Rec URL';
+		$columns['lf_presentation_date']             = 'presentation Date';
+		$columns['lf_presentation_registration_url'] = 'Reg URL';
+		$columns['lf_presentation_recording_url']    = 'Rec URL';
 
 		$columns['date'] = $date;
 
@@ -460,27 +446,27 @@ class Lf_Mu_Admin {
 	}
 
 	/**
-	 * Add custom column data to Webinars
+	 * Add custom column data to presentations
 	 *
 	 * @param array $column Admin columns.
 	 * @param int   $post_id Post ID.
 	 */
-	public function custom_lf_webinar_column( $column, $post_id ) {
+	public function custom_lf_presentation_column( $column, $post_id ) {
 		switch ( $column ) {
 
-			// gets the date of webinar.
-			case 'lf_webinar_date':
-				echo esc_html( gmdate( 'F j, Y', strtotime( get_post_meta( $post_id, 'lf_webinar_date', true ) ) ) );
+			// gets the date of presentation.
+			case 'lf_presentation_date':
+				echo esc_html( gmdate( 'F j, Y', strtotime( get_post_meta( $post_id, 'lf_presentation_date', true ) ) ) );
 				break;
 
 			// displays if registration URL has been added and it is a URL.
-			case 'lf_webinar_registration_url':
-				echo filter_var( get_post_meta( $post_id, 'lf_webinar_registration_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
+			case 'lf_presentation_registration_url':
+				echo filter_var( get_post_meta( $post_id, 'lf_presentation_registration_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
 				break;
 
 			// displays if recording URL has been added.
-			case 'lf_webinar_recording_url':
-				echo filter_var( get_post_meta( $post_id, 'lf_webinar_recording_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
+			case 'lf_presentation_recording_url':
+				echo filter_var( get_post_meta( $post_id, 'lf_presentation_recording_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
 				break;
 		}
 	}
