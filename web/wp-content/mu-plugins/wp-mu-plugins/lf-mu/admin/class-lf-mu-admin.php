@@ -437,8 +437,6 @@ class Lf_Mu_Admin {
 		unset( $columns['date'] );
 
 		$columns['lf_presentation_date']             = 'presentation Date';
-		$columns['lf_presentation_registration_url'] = 'Reg URL';
-		$columns['lf_presentation_recording_url']    = 'Rec URL';
 
 		$columns['date'] = $date;
 
@@ -457,16 +455,6 @@ class Lf_Mu_Admin {
 			// gets the date of presentation.
 			case 'lf_presentation_date':
 				echo esc_html( gmdate( 'F j, Y', strtotime( get_post_meta( $post_id, 'lf_presentation_date', true ) ) ) );
-				break;
-
-			// displays if registration URL has been added and it is a URL.
-			case 'lf_presentation_registration_url':
-				echo filter_var( get_post_meta( $post_id, 'lf_presentation_registration_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
-				break;
-
-			// displays if recording URL has been added.
-			case 'lf_presentation_recording_url':
-				echo filter_var( get_post_meta( $post_id, 'lf_presentation_recording_url', true ), FILTER_VALIDATE_URL ) ? 'Yes' : 'No';
 				break;
 		}
 	}

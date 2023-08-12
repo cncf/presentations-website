@@ -102,6 +102,10 @@ foreach ( $chapters as $chapter ) {
 			if ( $newid && 'https://community.cncf.io/api/chapter/296/event/' === $chapter ) {
 				wp_set_object_terms( $newid, 'end-user', 'lf-topic', true );
 			}
+
+			if ( $newid ) {
+				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
+			}
 		}
 	}
 }

@@ -135,3 +135,47 @@ $args   = array(
 	'show_admin_column' => true,
 );
 register_taxonomy( 'lf-country', array( 'lf_person' ), $args );
+
+$labels = array(
+	'name'              => __( 'Tags', 'lf-mu' ),
+	'singular_name'     => __( 'Tag', 'lf-mu' ),
+	'search_items'      => __( 'Search Tags', 'lf-mu' ),
+	'all_items'         => __( 'All Tags', 'lf-mu' ),
+	'parent_item'       => __( 'Parent Tag', 'lf-mu' ),
+	'parent_item_colon' => __( 'Parent Tag:', 'lf-mu' ),
+	'edit_item'         => __( 'Edit Tag', 'lf-mu' ),
+	'update_item'       => __( 'Update Tag', 'lf-mu' ),
+	'add_new_item'      => __( 'Add New Tag', 'lf-mu' ),
+	'new_item_name'     => __( 'New Tag Name', 'lf-mu' ),
+	'menu_name'         => __( 'Tags', 'lf-mu' ),
+);
+$args   = array(
+	'labels'            => $labels,
+	'show_in_rest'      => true,
+	'hierarchical'      => true,
+	'show_in_nav_menus' => false,
+	'show_admin_column' => true,
+);
+register_taxonomy( 'lf-presentation-tags', array( 'lf_presentation' ), $args );
+
+$labels = array(
+	'name'              => __( 'Presenter', 'lf-mu' ),
+	'singular_name'     => __( 'Presenter', 'lf-mu' ),
+	'search_items'      => __( 'Search Presenters', 'lf-mu' ),
+	'all_items'         => __( 'All Presenters', 'lf-mu' ),
+	'parent_item'       => __( 'Parent Presenter', 'lf-mu' ),
+	'parent_item_colon' => __( 'Parent Presenter:', 'lf-mu' ),
+	'edit_item'         => __( 'Edit Presenter', 'lf-mu' ),
+	'update_item'       => __( 'Update Presenter', 'lf-mu' ),
+	'add_new_item'      => __( 'Add New Presenter', 'lf-mu' ),
+	'new_item_name'     => __( 'New Presenter Name', 'lf-mu' ),
+	'menu_name'         => __( 'Presenters', 'lf-mu' ),
+);
+$args   = array(
+	'labels'            => $labels,
+	'show_in_rest'      => true,
+	'hierarchical'      => true,
+	'show_in_nav_menus' => false,
+	'show_admin_column' => true,
+);
+register_taxonomy( 'lf-presenter', array( 'lf_presentation' ), $args );
