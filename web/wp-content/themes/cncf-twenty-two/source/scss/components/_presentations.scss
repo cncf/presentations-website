@@ -89,11 +89,37 @@
 	&__link:hover {
 		text-decoration: none;
 	}
-	&__presented {
-		font-size: 12px;
-		line-height: 140%;
-		color: $gray-700;
-		margin-bottom: 20px;
+	&__tags {
+		list-style: none;
+		margin: 0 0 20px;
+		padding: 0;
+		overflow: hidden;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 13px;
+		li {
+			margin-left: 0;
+			a.tag {
+				display: block;
+				color: #fff;
+				background-color: #d62293;
+				border-radius: 50px;
+				padding-top: 7px;
+				padding-bottom: 7px;
+				padding-left: 15px;
+				padding-right: 15px;
+				font-weight: 600;
+				font-size: 10px;
+				line-height: 120%;
+				text-align: center;
+				letter-spacing: .02em;
+			}
+			a.tag:hover {
+				color: #fff;
+				text-decoration: none;
+				background-color: #c53490;
+			}
+		}
 	}
 	&__date-views-wrapper {
 		margin-top: auto;

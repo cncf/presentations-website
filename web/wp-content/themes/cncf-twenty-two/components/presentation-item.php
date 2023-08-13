@@ -7,20 +7,11 @@
  * @since 1.0.0
  */
 
-// get presentation date.
-$presentation_date = new DateTime( get_post_meta( get_the_ID(), 'lf_presentation_date', true ) );
-
-// get recording URL (for video thumb).
-$recording_url = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
-
-// extract YouTube video ID.
-$video_id = Lf_Utils::get_youtube_id_from_url( $recording_url );
-
-// get views.
-$presentation_views        = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
-
-// get companies (presented by).
-$company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
+$presentation_date  = new DateTime( get_post_meta( get_the_ID(), 'lf_presentation_date', true ) );
+$recording_url      = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
+$video_id           = Lf_Utils::get_youtube_id_from_url( $recording_url );
+$presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
+$tags               = get_the_terms( get_the_ID(), 'lf-presentation-tags' );
 ?>
 
 <div class="presentation-recorded-item has-animation-scale-2">
@@ -54,16 +45,22 @@ $company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
 	<h3 class="presentation-recorded-item__title"><a  class="presentation-recorded-item__link"
 			href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
-		<?php
-		if ( $company ) :
-			?>
-	<span class="presentation-recorded-item__presented">Presented by:
-			<?php echo esc_html( $company ); ?></span>
-			<?php
-			endif;
+	<ul class="presentation-recorded-item__tags">
+	<?php 
+	foreach( $tags as $tag ) {
+		$tag_link = '?_sft_lf-presentation-tags=' . $tag->slug;
 		?>
-
-<div class="presentation-recorded-item__date-views-wrapper">
+		<li>
+		<a 	class="tag"
+			title="See <?php echo esc_attr( $tag->name ); ?> presentations"
+			href="<?php echo esc_url( $tag_link ); ?>">
+			<?php echo esc_html( $tag->name ); ?></a>
+		</li>
+		<?php
+	}
+	?>
+	</ul>
+	<div class="presentation-recorded-item__date-views-wrapper">
 		<?php
 		if ( $presentation_date ) :
 			?>
