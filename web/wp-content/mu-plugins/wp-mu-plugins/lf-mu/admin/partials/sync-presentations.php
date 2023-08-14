@@ -81,19 +81,15 @@ foreach ( $remote_body as $pres ) {
 
 		if ( is_array( $pres['presenters'] ) ) {
 			$p = Array();
-			var_dump('1!!!');
 			foreach( $pres['presenters'] as $presenter ) {
-				$term_id = term_exists( $presenter['github'], 'lf-presenter' );
-				var_dump('2!!!');
-				if ( ! $term_id ) {
-					var_dump('3!!!');
+				$term = term_exists( $presenter['github'], 'lf-presenter' );
+				if ( ! $term ) {
 					$args = Array(
 						'slug' => $presenter['github']
 					);
-					$term_id = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+					$term = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
 				}
-				$p[] = $term_id;
-				var_dump('4!!!');
+				$p[] = $term['term_id'];
 			}
 			var_dump($p);
 
