@@ -76,7 +76,6 @@ foreach ( $chapters as $chapter ) {
 					'lf_presentation_registration_url' => $program->url,
 					'lf_presentation_recording_url' => $lf_presentation_recording_url,
 					'lf_presentation_slides_url' => $lf_presentation_slides_url,
-					'lf_presentation_timezone' => 'america-los_angeles',
 				),
 			);
 
@@ -100,7 +99,7 @@ foreach ( $chapters as $chapter ) {
 
 			if ( $newid ) {
 				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
-				wp_set_object_terms( $newid, 'english', 'lf-language', true );
+				wp_set_object_terms( $newid, 'en', 'lf-language', true );
 			}
 		}
 	}

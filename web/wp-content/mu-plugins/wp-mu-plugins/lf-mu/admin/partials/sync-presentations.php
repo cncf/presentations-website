@@ -16,6 +16,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// If a yaml parser is not available, return.
+// It doesn't seem to get installed on lando instances by default.
+if ( ! defined( 'yaml_parse' ) ) {
+	return;
+}
+
 $presentations_url = 'https://raw.githubusercontent.com/cncf/presentations/master/presentations.yaml';
 
 $args = array(
@@ -30,80 +36,51 @@ if ( is_wp_error( $data ) || ( wp_remote_retrieve_response_code( $data ) != 200 
 
 $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 
-var_dump( $remote_body); die();
-foreach ( $remote_body->results as $program ) {
-	if ( 'Published' === $program->status ) {
-		// add/update CPT.
+var_dump( $remote_body); 
 
-		$dt_end = strtotime( $program->end_date );
+foreach ( $remote_body as $pres ) {
+	$lf_presentation_slides_url = $pres->slides;
 
-		if ( $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
-			// avoid updating programs that ended more than 2 weeks ago to limit computation.
-			// don't import programs that haven't ended yet.
-			continue;
+	if ( $lf_presentation_slides_url ) {
+		preg_match( '/id=(\d*)&/', $lf_presentation_slides_url, $matches );
+		if ( array_key_exists( 1, $matches ) ) {
+			$lf_presentation_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
 		}
+	}
 
-		$post_content = '';
-		$lf_presentation_recording_url = '';
-		$lf_presentation_slides_url = '';
+	$params = array(
+		'post_title' => $pres->name,
+		'post_type' => 'lf_presentation',
+		'post_status' => 'publish',
+		'post_content' => $pres->description,
+		'meta_input' => array(
+			'lf_presentation_date' => $pres->date,
+			'lf_presentation_registration_url' => $pres->url,
+			'lf_presentation_recording_url' => $pres->video,
+			'lf_presentation_slides_url' => $lf_presentation_slides_url,
+			'lf_presentation_license' =>$pres->license,
+		),
+	);
 
-		// grab program details for recorded view.
-		$details_data = wp_remote_get( 'https://community.cncf.io/api/event/' . $program->id );
-		if ( is_wp_error( $details_data ) || ( wp_remote_retrieve_response_code( $details_data ) != 200 ) ) {
-			continue;
-		}
-
-		$details = json_decode( wp_remote_retrieve_body( $details_data ) );
-		$post_content = strip_tags( $details->description );
-		$lf_presentation_recording_url = $details->video_url;
-
-		if ( ! $lf_presentation_recording_url ) {
-			// if there is no recording url then skip import.
-			continue;
-		}
-
-		if ( $details->slideshare_url ) {
-			preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
-			if ( array_key_exists( 1, $matches ) ) {
-				$lf_presentation_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
-			}
-		}
-
-		$params = array(
-			'post_title' => $program->title,
+	$query = new WP_Query(
+		array(
 			'post_type' => 'lf_presentation',
-			'post_status' => 'publish',
-			'post_content' => $post_content,
-			'meta_input' => array(
-				'lf_presentation_date' => substr( $program->start_date, 0, 10 ),
-				'lf_presentation_registration_url' => $program->url,
-				'lf_presentation_recording_url' => $lf_presentation_recording_url,
-				'lf_presentation_slides_url' => $lf_presentation_slides_url,
-				'lf_presentation_timezone' => 'america-los_angeles',
-			),
-		);
+			'meta_value' => $pres->slides,
+			'no_found_rows' => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+			'fields' => 'ids',
+			'posts_per_page' => 1,
+		)
+	);
+	if ( $query->have_posts() ) {
+		$query->the_post();
+		$params['ID'] = get_the_ID(); // post to update.
+	}
 
-		$query = new WP_Query(
-			array(
-				'post_type' => 'lf_presentation',
-				'meta_value' => $program->url,
-				'no_found_rows' => true,
-				'update_post_meta_cache' => false,
-				'update_post_term_cache' => false,
-				'fields' => 'ids',
-				'posts_per_page' => 1,
-			)
-		);
-		if ( $query->have_posts() ) {
-			$query->the_post();
-			$params['ID'] = get_the_ID(); // post to update.
-		}
+	$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
-		$newid = wp_insert_post( $params ); // will insert or update the post as needed.
-
-		if ( $newid ) {
-			wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
-			wp_set_object_terms( $newid, 'english', 'lf-language', true );
-		}
+	if ( $newid ) {
+		wp_set_object_terms( $newid, $pres->language, 'lf-language', true );
 	}
 }
