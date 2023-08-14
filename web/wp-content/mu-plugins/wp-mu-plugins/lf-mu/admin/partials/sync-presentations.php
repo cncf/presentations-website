@@ -93,5 +93,9 @@ foreach ( $remote_body as $pres ) {
 			}
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
+
+		if ( is_array( $pres['tags'] ) ) {
+			wp_set_object_terms( $newid, $pres['tags'], 'lf-presentation-tags' );
+		}
 	}
 }
