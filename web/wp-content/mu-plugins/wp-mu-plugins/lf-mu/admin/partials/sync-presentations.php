@@ -82,10 +82,18 @@ foreach ( $remote_body as $pres ) {
 		wp_set_object_terms( $newid, strtolower( $pres['language'] ), 'lf-language', true );
 
 		if ( is_array( $pres['presenters'] ) ) {
+			$p = Array();
 			foreach( $pres['presenters'] as $presenter ) {
-
-
+				$term_id = term_exists( $presenter['github'], 'lf-presenter' );
+				if ( ! $term_id ) {
+					$args = Array(
+						'slug' => $presenter['github']
+					);
+					$term_id = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+				}
+				$p[] = $term_id;
 			}
+			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
 	}
 }
