@@ -39,7 +39,7 @@ $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 var_dump( $remote_body); 
 
 foreach ( $remote_body as $pres ) {
-	$lf_presentation_slides_url = $pres->slides;
+	$lf_presentation_slides_url = $pres['slides'];
 
 	if ( $lf_presentation_slides_url ) {
 		preg_match( '/id=(\d*)&/', $lf_presentation_slides_url, $matches );
@@ -49,23 +49,23 @@ foreach ( $remote_body as $pres ) {
 	}
 
 	$params = array(
-		'post_title' => $pres->name,
+		'post_title' => $pres['name'],
 		'post_type' => 'lf_presentation',
 		'post_status' => 'publish',
-		'post_content' => $pres->description,
+		'post_content' => $pres['description'],
 		'meta_input' => array(
-			'lf_presentation_date' => $pres->date,
-			'lf_presentation_registration_url' => $pres->url,
-			'lf_presentation_recording_url' => $pres->video,
+			'lf_presentation_date' => $pres['date'],
+			'lf_presentation_registration_url' => $pres['url'],
+			'lf_presentation_recording_url' => $pres['video'],
 			'lf_presentation_slides_url' => $lf_presentation_slides_url,
-			'lf_presentation_license' =>$pres->license,
+			'lf_presentation_license' =>$pres['license'],
 		),
 	);
 
 	$query = new WP_Query(
 		array(
 			'post_type' => 'lf_presentation',
-			'meta_value' => $pres->slides,
+			'meta_value' => $pres['slides'],
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
@@ -81,6 +81,6 @@ foreach ( $remote_body as $pres ) {
 	$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 	if ( $newid ) {
-		wp_set_object_terms( $newid, strtolower( $pres->language ), 'lf-language', true );
+		wp_set_object_terms( $newid, strtolower( $pres['language'] ), 'lf-language', true );
 	}
 }
