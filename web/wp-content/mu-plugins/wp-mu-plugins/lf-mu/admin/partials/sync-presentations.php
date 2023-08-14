@@ -15,6 +15,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+var_dump('1!!!');
 
 // If a yaml parser is not available, return.
 // It doesn't seem to get installed on lando instances by default.
@@ -23,7 +24,7 @@ if ( ! defined( 'yaml_parse' ) ) {
 }
 
 $presentations_url = 'https://raw.githubusercontent.com/cncf/presentations/master/presentations.yaml';
-var_dump('hi!!!');
+var_dump('2!!!');
 $args = array(
 	'timeout'   => 100,
 	'sslverify' => false,
@@ -36,9 +37,10 @@ if ( is_wp_error( $data ) || ( wp_remote_retrieve_response_code( $data ) != 200 
 
 $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 
-var_dump( $remote_body); die();
+var_dump( $remote_body);
 
 foreach ( $remote_body as $pres ) {
+	var_dump($pres);
 	$lf_presentation_slides_url = $pres['slides'];
 
 	if ( $lf_presentation_slides_url ) {
