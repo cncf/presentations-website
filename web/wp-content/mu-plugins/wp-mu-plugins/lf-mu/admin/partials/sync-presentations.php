@@ -81,6 +81,6 @@ foreach ( $remote_body as $pres ) {
 	$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 	if ( $newid ) {
-		wp_set_object_terms( $newid, $pres->language, 'lf-language', true );
+		wp_set_object_terms( $newid, strtolower( $pres->language ), 'lf-language', true );
 	}
 }
