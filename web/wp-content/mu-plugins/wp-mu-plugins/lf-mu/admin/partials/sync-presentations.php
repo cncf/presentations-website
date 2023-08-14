@@ -91,8 +91,6 @@ foreach ( $remote_body as $pres ) {
 				}
 				$p[] = $term['term_id'];
 			}
-			var_dump($p);
-
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
 	}
