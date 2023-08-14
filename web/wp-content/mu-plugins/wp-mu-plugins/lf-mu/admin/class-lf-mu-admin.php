@@ -436,7 +436,7 @@ class Lf_Mu_Admin {
 		$date = $columns['date'];
 		unset( $columns['date'] );
 
-		$columns['lf_presentation_date']             = 'presentation Date';
+		$columns['lf_presentation_date'] = 'Presentation Date';
 
 		$columns['date'] = $date;
 
