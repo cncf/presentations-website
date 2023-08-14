@@ -11,26 +11,13 @@ wp_enqueue_style( 'wp-block-embed' );
 
 $presentation_date  = new DateTime( get_post_meta( get_the_ID(), 'lf_presentation_date', true ) );
 $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
-
-// get recording URL.
-$recording_url = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
-
-// extract YouTube video ID.
-$video_id = Lf_Utils::get_youtube_id_from_url( $recording_url );
-
-// get companies (presented by).
-$company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
-
-// get registration URL.
-$registration_url = get_post_meta( get_the_ID(), 'lf_presentation_registration_url', true );
-
-// get slides URL.
-$slides_url = get_post_meta( get_the_ID(), 'lf_presentation_slides_url', true );
-
-// get presentation views.
+$presenters         = get_the_terms( get_the_ID(), 'lf-presenter' );
+$projects           = get_the_terms( get_the_ID(), 'lf-project' );
+$recording_url      = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
+$video_id           = Lf_Utils::get_youtube_id_from_url( $recording_url );
+$slides_url         = get_post_meta( get_the_ID(), 'lf_presentation_slides_url', true );
 $presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
 
-$period_status = 'recorded';
 ?>
 <main class="presentation-single">
 	<article class="container wrap">
@@ -129,6 +116,44 @@ endwhile;
 			}
 			?>
 		</ul>
+
+		<?php if ( $presenters ): ?>
+		<div class="presentation-recorded-item__presenters">
+			<strong>Presented By:</strong>
+			<?php
+			$comma = '';
+			foreach( $presenters as $presenter ) {
+				echo $comma;
+			?>
+			<a href="https://github.com/<?php echo esc_attr( $presenter->slug ); ?>"><?php echo esc_html( $presenter->name ); ?></a>
+			<?php
+				$comma = ', ';
+			}
+			?>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( $projects ): ?>
+		<div class="presentation-recorded-item__projects">
+			<strong>Related Projects: </strong>
+			<?php
+			$comma = '';
+			if ( is_array( $projects ) ) {
+				foreach( $projects as $project ) {
+					echo $comma;
+					$project_link = '/?_sft_lf-project=' . $project->slug;
+					?>
+					<a 	class="project"
+						title="See <?php echo esc_attr( $project->name ); ?> presentations"
+						href="<?php echo esc_url( $project_link ); ?>">
+						<?php echo esc_html( $project->name ); ?></a>
+					<?php
+					$comma = ', ';
+				}
+			}
+			?>
+		</div>
+		<?php endif; ?>
 
 		<div aria-hidden="true" class="wp-block-spacer is-style-40-60">
 		</div>
