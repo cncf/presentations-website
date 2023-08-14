@@ -36,7 +36,7 @@ if ( is_wp_error( $data ) || ( wp_remote_retrieve_response_code( $data ) != 200 
 
 $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 
-var_dump( $remote_body); 
+var_dump( $remote_body); die();
 
 foreach ( $remote_body as $pres ) {
 	$lf_presentation_slides_url = $pres['slides'];
