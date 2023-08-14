@@ -101,8 +101,8 @@
 			margin-left: 0;
 			a.tag {
 				display: block;
-				color: #fff;
-				background-color: #d62293;
+				color: #000;
+				background-color: #ddd;
 				border-radius: 50px;
 				padding-top: 7px;
 				padding-bottom: 7px;
@@ -115,9 +115,8 @@
 				letter-spacing: .02em;
 			}
 			a.tag:hover {
-				color: #fff;
 				text-decoration: none;
-				background-color: #c53490;
+				background-color: #F0F0F0;
 			}
 		}
 	}
