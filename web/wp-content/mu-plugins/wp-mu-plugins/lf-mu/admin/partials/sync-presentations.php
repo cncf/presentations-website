@@ -15,7 +15,7 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
-phpinfo();
+
 $presentations_url = 'https://raw.githubusercontent.com/cncf/presentations/master/presentations.yaml';
 
 $args = array(
