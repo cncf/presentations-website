@@ -98,7 +98,7 @@ foreach ( $chapters as $chapter ) {
 
 			if ( $newid ) {
 				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
-				wp_set_object_terms( $newid, 'en', 'lf-language', true );
+				wp_set_object_terms( $newid, 'en', 'lf-language' );
 			}
 		}
 	}

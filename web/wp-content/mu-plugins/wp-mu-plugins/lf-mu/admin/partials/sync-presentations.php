@@ -77,21 +77,27 @@ foreach ( $remote_body as $pres ) {
 	$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 	if ( $newid ) {
-		wp_set_object_terms( $newid, strtolower( $pres['language'] ), 'lf-language', true );
+		wp_set_object_terms( $newid, strtolower( $pres['language'] ), 'lf-language' );
 
 		if ( is_array( $pres['presenters'] ) ) {
 			$p = Array();
+			var_dump('1!!!');
 			foreach( $pres['presenters'] as $presenter ) {
 				$term_id = term_exists( $presenter['github'], 'lf-presenter' );
+				var_dump('2!!!');
 				if ( ! $term_id ) {
+					var_dump('3!!!');
 					$args = Array(
 						'slug' => $presenter['github']
 					);
 					$term_id = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
 				}
 				$p[] = $term_id;
+				var_dump('4!!!');
 			}
-			wp_set_post_terms( $newid, $p, 'lf-presenter' );
+			var_dump($p);
+
+			wp_set_object_terms( $newid, $p, 'lf-presenter' );
 		}
 	}
 }
