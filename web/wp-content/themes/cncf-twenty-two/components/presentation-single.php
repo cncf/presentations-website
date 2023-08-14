@@ -114,16 +114,18 @@ endwhile;
 
 		<ul class="presentation-recorded-item__tags">
 			<?php 
-			foreach( $tags as $tag ) {
-				$tag_link = '?_sft_lf-presentation-tags=' . $tag->slug;
-				?>
-				<li>
-				<a 	class="tag"
-					title="See <?php echo esc_attr( $tag->name ); ?> presentations"
-					href="<?php echo esc_url( $tag_link ); ?>">
-					<?php echo esc_html( $tag->name ); ?></a>
-				</li>
-				<?php
+			if ( is_array( $tags ) ) {
+				foreach( $tags as $tag ) {
+					$tag_link = '?_sft_lf-presentation-tags=' . $tag->slug;
+					?>
+					<li>
+					<a 	class="tag"
+						title="See <?php echo esc_attr( $tag->name ); ?> presentations"
+						href="<?php echo esc_url( $tag_link ); ?>">
+						<?php echo esc_html( $tag->name ); ?></a>
+					</li>
+					<?php
+				}
 			}
 			?>
 		</ul>

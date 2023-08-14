@@ -97,7 +97,7 @@ foreach ( $remote_body as $pres ) {
 			}
 			var_dump($p);
 
-			wp_set_object_terms( $newid, $p, 'lf-presenter' );
+			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
 	}
 }
