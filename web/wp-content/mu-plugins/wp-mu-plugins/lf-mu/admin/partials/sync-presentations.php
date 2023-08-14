@@ -52,7 +52,6 @@ foreach ( $remote_body as $pres ) {
 		'post_content' => $pres['description'],
 		'meta_input' => array(
 			'lf_presentation_date' => $pres['date'],
-			'lf_presentation_registration_url' => $pres['url'],
 			'lf_presentation_recording_url' => $pres['video'],
 			'lf_presentation_slides_url' => $lf_presentation_slides_url,
 			'lf_presentation_license' =>$pres['license'],

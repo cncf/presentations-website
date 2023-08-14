@@ -73,7 +73,6 @@ foreach ( $chapters as $chapter ) {
 				'post_content' => $post_content,
 				'meta_input' => array(
 					'lf_presentation_date' => substr( $program->start_date, 0, 10 ),
-					'lf_presentation_registration_url' => $program->url,
 					'lf_presentation_recording_url' => $lf_presentation_recording_url,
 					'lf_presentation_slides_url' => $lf_presentation_slides_url,
 				),
