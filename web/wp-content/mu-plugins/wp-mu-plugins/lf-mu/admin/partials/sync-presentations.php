@@ -95,7 +95,11 @@ foreach ( $remote_body as $pres ) {
 		}
 
 		if ( is_array( $pres['tags'] ) ) {
-			wp_set_object_terms( $newid, $pres['tags'], 'lf-presentation-tags' );
+			wp_set_object_terms( $newid, $pres['tags'], 'lf-presentation-tag' );
+		}
+
+		if ( is_array( $pres['projects'] ) ) {
+			wp_set_object_terms( $newid, $pres['projects'], 'lf-project' );
 		}
 	}
 }

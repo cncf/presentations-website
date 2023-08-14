@@ -97,7 +97,7 @@ foreach ( $chapters as $chapter ) {
 			$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 			if ( $newid ) {
-				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
+				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tag', true );
 				wp_set_object_terms( $newid, 'en', 'lf-language' );
 			}
 		}

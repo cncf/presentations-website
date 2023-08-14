@@ -10,7 +10,7 @@
 wp_enqueue_style( 'wp-block-embed' );
 
 $presentation_date  = new DateTime( get_post_meta( get_the_ID(), 'lf_presentation_date', true ) );
-$tags               = get_the_terms( get_the_ID(), 'lf-presentation-tags' );
+$tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 
 // get recording URL.
 $recording_url = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
@@ -116,7 +116,7 @@ endwhile;
 			<?php 
 			if ( is_array( $tags ) ) {
 				foreach( $tags as $tag ) {
-					$tag_link = '?_sft_lf-presentation-tags=' . $tag->slug;
+					$tag_link = '?_sft_lf-presentation-tag=' . $tag->slug;
 					?>
 					<li>
 					<a 	class="tag"

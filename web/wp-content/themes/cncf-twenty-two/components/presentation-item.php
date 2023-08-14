@@ -11,7 +11,7 @@ $presentation_date  = new DateTime( get_post_meta( get_the_ID(), 'lf_presentatio
 $recording_url      = get_post_meta( get_the_ID(), 'lf_presentation_recording_url', true );
 $video_id           = Lf_Utils::get_youtube_id_from_url( $recording_url );
 $presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
-$tags               = get_the_terms( get_the_ID(), 'lf-presentation-tags' );
+$tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 ?>
 
 <div class="presentation-recorded-item has-animation-scale-2">
@@ -49,7 +49,7 @@ $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tags' );
 	<?php 
 	if ( is_array( $tags ) ) {
 		foreach( $tags as $tag ) {
-			$tag_link = '?_sft_lf-presentation-tags=' . $tag->slug;
+			$tag_link = '?_sft_lf-presentation-tag=' . $tag->slug;
 			?>
 			<li>
 			<a 	class="tag"

@@ -156,7 +156,7 @@ $args   = array(
 	'show_in_nav_menus' => false,
 	'show_admin_column' => true,
 );
-register_taxonomy( 'lf-presentation-tags', array( 'lf_presentation' ), $args );
+register_taxonomy( 'lf-presentation-tag', array( 'lf_presentation' ), $args );
 
 $labels = array(
 	'name'              => __( 'Presenter', 'lf-mu' ),
