@@ -288,6 +288,13 @@ class Lf_Mu_Admin {
 	}
 
 	/**
+	 * Sync programs from https://github.com/cncf/presentations
+	 */
+	public function sync_presentations() {
+		include_once 'partials/sync-presentations.php';
+	}
+
+	/**
 	 * Sync projects data from landscape.
 	 */
 	public function sync_projects() {

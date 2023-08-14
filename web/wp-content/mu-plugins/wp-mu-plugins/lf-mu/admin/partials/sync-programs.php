@@ -2,8 +2,7 @@
 /**
  * Sync Programs
  *
- * Sync programs from https://community.cncf.io/ and https://www.cncf.io/online-programs/.
- * Do this to get it to run locally: https://github.com/lando/lando/issues/866#issuecomment-395219617
+ * Sync programs from https://community.cncf.io/ .
  *
  * @link       https://www.cncf.io/
  * @since      1.2.0
