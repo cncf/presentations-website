@@ -23,7 +23,7 @@ if ( ! defined( 'yaml_parse' ) ) {
 }
 
 $presentations_url = 'https://raw.githubusercontent.com/cncf/presentations/master/presentations.yaml';
-
+var_dump('hi!!!');
 $args = array(
 	'timeout'   => 100,
 	'sslverify' => false,
