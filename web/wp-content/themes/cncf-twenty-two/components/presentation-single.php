@@ -124,9 +124,7 @@ endwhile;
 			$comma = '';
 			foreach( $presenters as $presenter ) {
 				echo $comma;
-			?>
-			<a href="https://github.com/<?php echo esc_attr( $presenter->slug ); ?>"><?php echo esc_html( $presenter->name ); ?></a>
-			<?php
+				echo '<a href="https://github.com/' . esc_attr( $presenter->slug ) . '">' . esc_html( trim( $presenter->name ) ) . '</a>';
 				$comma = ', ';
 			}
 			?>
@@ -142,12 +140,7 @@ endwhile;
 				foreach( $projects as $project ) {
 					echo $comma;
 					$project_link = '/?_sft_lf-project=' . $project->slug;
-					?>
-					<a 	class="project"
-						title="See <?php echo esc_attr( $project->name ); ?> presentations"
-						href="<?php echo esc_url( $project_link ); ?>">
-						<?php echo esc_html( $project->name ); ?></a>
-					<?php
+					echo '<a class="project" title="See ' . esc_attr( $project->name ) . ' presentations" href="' . esc_url( $project_link ) . '">' . esc_html( $project->name ) . '</a>';
 					$comma = ', ';
 				}
 			}
