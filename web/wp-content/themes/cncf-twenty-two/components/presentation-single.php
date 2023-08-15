@@ -90,7 +90,7 @@ endwhile;
 			?>
 		</ul>
 
-		<div class="presentation-recorded-item__date">
+		<div class="presentation-recorded-item__meta">
 			<strong>Date:</strong>
 			<?php
 			echo esc_html( $presentation_date->format( 'F j, Y' ) );
@@ -98,7 +98,7 @@ endwhile;
 		</div>
 
 		<?php if ( $presentation_views ) : ?>
-		<div class="presentation-recorded-item__views">
+		<div class="presentation-recorded-item__meta">
 			<strong>Video Views:</strong>
 			<?php
 			echo esc_html( number_format( $presentation_views ) );
@@ -107,7 +107,7 @@ endwhile;
 		<?php endif; ?>
 
 		<?php if ( $presenters ): ?>
-		<div class="presentation-recorded-item__presenters">
+		<div class="presentation-recorded-item__meta">
 			<strong>Presented By:</strong>
 			<?php
 			$comma = '';
