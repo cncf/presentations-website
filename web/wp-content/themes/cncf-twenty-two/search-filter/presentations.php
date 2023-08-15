@@ -2,7 +2,7 @@
 /**
  * Search & Filter Pro
  *
- * presentations
+ * Presentations
  *
  * @package WordPress
  * @subpackage cncf-theme

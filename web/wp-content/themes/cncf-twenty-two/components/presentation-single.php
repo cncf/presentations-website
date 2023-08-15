@@ -1,6 +1,6 @@
 <?php
 /**
- * presentation content - the loop
+ * Presentation content - the loop
  *
  * @package WordPress
  * @subpackage cncf-theme
@@ -75,16 +75,16 @@ endwhile;
 		</div>
 
 		<ul class="presentation-recorded-item__tags">
-			<?php 
+			<?php
 			if ( is_array( $tags ) ) {
-				foreach( $tags as $tag ) {
-					$tag_link = '/?_sft_lf-presentation-tag=' . $tag->slug;
+				foreach( $tags as $t ) {
+					$tag_link = '/?_sft_lf-presentation-tag=' . $t->slug;
 					?>
 					<li>
 					<a 	class="tag"
-						title="See <?php echo esc_attr( $tag->name ); ?> presentations"
+						title="See <?php echo esc_attr( $t->name ); ?> presentations"
 						href="<?php echo esc_url( $tag_link ); ?>">
-						<?php echo esc_html( $tag->name ); ?></a>
+						<?php echo esc_html( $t->name ); ?></a>
 					</li>
 					<?php
 				}
@@ -114,7 +114,7 @@ endwhile;
 			<?php
 			$comma = '';
 			foreach( $presenters as $presenter ) {
-				echo $comma;
+				echo esc_html( $comma );
 				echo '<a href="https://github.com/' . esc_attr( $presenter->slug ) . '">' . esc_html( trim( $presenter->name ) ) . '</a>';
 				$comma = ', ';
 			}
@@ -143,7 +143,7 @@ endwhile;
 			$comma = '';
 			if ( is_array( $projects ) ) {
 				foreach( $projects as $project ) {
-					echo $comma;
+					echo esc_html( $comma );
 					$project_link = '/?_sft_lf-project=' . $project->slug;
 					echo '<a class="project" title="See ' . esc_attr( $project->name ) . ' presentations" href="' . esc_url( $project_link ) . '">' . esc_html( $project->name ) . '</a>';
 					$comma = ', ';

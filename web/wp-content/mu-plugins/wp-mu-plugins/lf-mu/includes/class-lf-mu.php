@@ -191,7 +191,7 @@ class Lf_Mu {
 		}
 
 		// Sync people with https://github.com/cncf/people.
-		// $this->loader->add_action( 'lf_sync_people', $plugin_admin, 'sync_people' );
+		// $this->loader->add_action( 'lf_sync_people', $plugin_admin, 'sync_people' ); //phpcs:ignore.
 
 		// Example of how to run a sync locally on demand.
 		// $this->loader->add_action( 'init', $plugin_admin, 'sync_presentations' ); //phpcs:ignore.

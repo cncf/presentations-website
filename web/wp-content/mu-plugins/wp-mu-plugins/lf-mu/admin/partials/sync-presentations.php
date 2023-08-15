@@ -54,7 +54,7 @@ foreach ( $remote_body as $pres ) {
 			'lf_presentation_date' => $pres['date'],
 			'lf_presentation_recording_url' => $pres['video'],
 			'lf_presentation_slides_url' => $lf_presentation_slides_url,
-			'lf_presentation_license' =>$pres['license'],
+			'lf_presentation_license' => $pres['license'],
 		),
 	);
 
@@ -87,16 +87,16 @@ foreach ( $remote_body as $pres ) {
 		wp_set_object_terms( $newid, strtolower( $pres['language'] ), 'lf-language' );
 
 		if ( is_array( $pres['presenters'] ) ) {
-			$p = Array();
+			$p = array();
 			foreach( $pres['presenters'] as $presenter ) {
-				$term = term_exists( $presenter['github'], 'lf-presenter' );
-				if ( ! $term ) {
-					$args = Array(
-						'slug' => $presenter['github']
+				$t = term_exists( $presenter['github'], 'lf-presenter' );
+				if ( ! $t ) {
+					$args = array(
+						'slug' => $presenter['github'],
 					);
-					$term = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+					$t = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
 				}
-				$p[] = $term['term_id'];
+				$p[] = $t['term_id'];
 			}
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}

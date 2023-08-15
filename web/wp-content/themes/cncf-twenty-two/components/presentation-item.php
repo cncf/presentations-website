@@ -46,16 +46,16 @@ $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 			href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
 	<ul class="presentation-recorded-item__tags">
-	<?php 
+	<?php
 	if ( is_array( $tags ) ) {
-		foreach( $tags as $tag ) {
-			$tag_link = '?_sft_lf-presentation-tag=' . $tag->slug;
+		foreach( $tags as $t ) {
+			$tag_link = '?_sft_lf-presentation-tag=' . $t->slug;
 			?>
 			<li>
 			<a 	class="tag"
-				title="See <?php echo esc_attr( $tag->name ); ?> presentations"
+				title="See <?php echo esc_attr( $t->name ); ?> presentations"
 				href="<?php echo esc_url( $tag_link ); ?>">
-				<?php echo esc_html( $tag->name ); ?></a>
+				<?php echo esc_html( $t->name ); ?></a>
 			</li>
 			<?php
 		}

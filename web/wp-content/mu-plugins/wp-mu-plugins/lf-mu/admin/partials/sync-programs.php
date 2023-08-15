@@ -102,8 +102,6 @@ foreach ( $chapters as $chapter ) {
 					wp_set_object_terms( $newid, 'en', 'lf-language', true );
 				}
 			}
-
-
 		}
 	}
 }
