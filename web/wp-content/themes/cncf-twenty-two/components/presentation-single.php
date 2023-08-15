@@ -24,34 +24,7 @@ $presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_vi
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			?>
 
-		<div class="presentation-single__meta-wrapper">
-
-
-			<div class="presentation-single__date">
-					<img width="18" height="14" src="<?php LF_utils::get_svg( 'icon-camera.svg', true ); ?>" alt="Camera Icon" class="presentation-single__svg"> Recorded:
-					<?php
-					echo esc_html( $presentation_date->format( 'F j, Y' ) );
-					?>
-			</div>
-
-					<?php
-				if ( $presentation_views ) :
-					?>
-			<div class="presentation-single__views">
-
-			<img width="18" height="14" src="<?php LF_utils::get_svg( 'icon-views.svg', true ); ?>" alt="Views Icon" class="presentation-single__svg">
-
-			Views: <?php echo esc_html( number_format( $presentation_views ) ); ?>
-			</div>
-			<?php endif; ?>
-
-		</div>
-
-		<div style="height:90px" aria-hidden="true" class="wp-block-spacer is-style-70-90"></div>
-
-			<?php
 			// Video.
 			if ( $video_id ) :
 				?>
@@ -116,6 +89,22 @@ endwhile;
 			}
 			?>
 		</ul>
+
+		<div class="presentation-recorded-item__date">
+			<strong>Date:</strong>
+			<?php
+			echo esc_html( $presentation_date->format( 'F j, Y' ) );
+			?>
+		</div>
+
+		<?php if ( $presentation_views ) : ?>
+		<div class="presentation-recorded-item__views">
+			<strong>Video Views:</strong>
+			<?php
+			echo esc_html( number_format( $presentation_views ) );
+			?>
+		</div>
+		<?php endif; ?>
 
 		<?php if ( $presenters ): ?>
 		<div class="presentation-recorded-item__presenters">
