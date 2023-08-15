@@ -103,7 +103,7 @@ endwhile;
 			<?php 
 			if ( is_array( $tags ) ) {
 				foreach( $tags as $tag ) {
-					$tag_link = '?_sft_lf-presentation-tag=' . $tag->slug;
+					$tag_link = '/?_sft_lf-presentation-tag=' . $tag->slug;
 					?>
 					<li>
 					<a 	class="tag"
