@@ -34,7 +34,7 @@ foreach ( $chapters as $chapter ) {
 
 			$dt_end = strtotime( $program->end_date );
 
-			if ( $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
+			if ( $dt_end > time() + DAY_IN_SECONDS ) {
 				// avoid updating programs that ended more than 2 weeks ago to limit computation.
 				// don't import programs that haven't ended yet.
 				continue;
@@ -73,6 +73,8 @@ foreach ( $chapters as $chapter ) {
 				'post_content' => $post_content,
 				'meta_input' => array(
 					'lf_presentation_date' => substr( $program->start_date, 0, 10 ),
+					'lf_presentation_event_name' => 'Cloud Native Community Groups',
+					'lf_presentation_event_url' => $program->url,
 					'lf_presentation_recording_url' => $lf_presentation_recording_url,
 					'lf_presentation_slides_url' => $lf_presentation_slides_url,
 				),
@@ -97,7 +99,7 @@ foreach ( $chapters as $chapter ) {
 			$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 			if ( $newid ) {
-				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tag', true );
+				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
 				wp_set_object_terms( $newid, 'en', 'lf-language' );
 			}
 		}

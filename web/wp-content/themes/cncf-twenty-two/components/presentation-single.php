@@ -17,6 +17,8 @@ $recording_url      = get_post_meta( get_the_ID(), 'lf_presentation_recording_ur
 $video_id           = Lf_Utils::get_youtube_id_from_url( $recording_url );
 $slides_url         = get_post_meta( get_the_ID(), 'lf_presentation_slides_url', true );
 $presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
+$event_name         = get_post_meta( get_the_ID(), 'lf_presentation_event_name', true );
+$event_url          = get_post_meta( get_the_ID(), 'lf_presentation_event_url', true );
 
 ?>
 <main class="presentation-single">
@@ -117,6 +119,20 @@ endwhile;
 				$comma = ', ';
 			}
 			?>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( $event_name ): ?>
+		<div class="presentation-recorded-item__meta">
+			<strong>Event:</strong>
+			<?php
+			if ( $event_url ) {
+				echo '<a href="' . esc_url( $event_url ) . '">' . esc_html( $event_name ) . '</a>';
+			} else {
+				echo esc_html( $event_name );
+			}
+			?>
+
 		</div>
 		<?php endif; ?>
 
