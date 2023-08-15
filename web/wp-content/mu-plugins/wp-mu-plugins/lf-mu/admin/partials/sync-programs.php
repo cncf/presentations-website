@@ -94,14 +94,16 @@ foreach ( $chapters as $chapter ) {
 			if ( $query->have_posts() ) {
 				$query->the_post();
 				$params['ID'] = get_the_ID(); // post to update.
+				$newid = wp_insert_post( $params ); // will update the post.
+			} else {
+				$newid = wp_insert_post( $params ); // will insert new pose.
+				if ( $newid ) {
+					wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
+					wp_set_object_terms( $newid, 'en', 'lf-language', true );
+				}
 			}
 
-			$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
-			if ( $newid ) {
-				wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tags', true );
-				wp_set_object_terms( $newid, 'en', 'lf-language' );
-			}
 		}
 	}
 }
