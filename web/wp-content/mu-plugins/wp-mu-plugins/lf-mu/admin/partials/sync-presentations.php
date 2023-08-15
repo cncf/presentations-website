@@ -58,6 +58,13 @@ foreach ( $remote_body as $pres ) {
 		),
 	);
 
+	if ( $pres['event'] && $pres['event']['name'] ) {
+		$params['meta_input']['lf_presentation_event_name'] = $pres['event']['name'];
+		if ( $pres['event']['name'] ) {
+			$params['meta_input']['lf_presentation_event_url'] = $pres['event']['url'];
+		}
+	}
+
 	$query = new WP_Query(
 		array(
 			'post_type' => 'lf_presentation',
