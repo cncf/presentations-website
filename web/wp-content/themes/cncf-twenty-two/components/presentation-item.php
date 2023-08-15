@@ -27,7 +27,7 @@ $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 				alt="<?php the_title_attribute(); ?>" class="presentation-recorded-item__image">
 
 <svg class="presentation-recorded-item__overlay" width="70" height="71">
- <use xlink:href="#play-button" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+<use xlink:href="#play-button" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
 </svg>
 
 			<?php
@@ -48,7 +48,7 @@ $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 	<ul class="presentation-recorded-item__tags">
 	<?php
 	if ( is_array( $tags ) ) {
-		foreach( $tags as $t ) {
+		foreach ( $tags as $t ) {
 			$tag_link = '?_sft_lf-presentation-tag=' . $t->slug;
 			?>
 			<li>

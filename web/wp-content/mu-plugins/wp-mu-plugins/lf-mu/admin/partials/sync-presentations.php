@@ -88,7 +88,7 @@ foreach ( $remote_body as $pres ) {
 
 		if ( is_array( $pres['presenters'] ) ) {
 			$p = array();
-			foreach( $pres['presenters'] as $presenter ) {
+			foreach ( $pres['presenters'] as $presenter ) {
 				$t = term_exists( $presenter['github'], 'lf-presenter' );
 				if ( ! $t ) {
 					$args = array(

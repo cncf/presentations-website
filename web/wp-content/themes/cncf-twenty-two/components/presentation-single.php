@@ -77,7 +77,7 @@ endwhile;
 		<ul class="presentation-recorded-item__tags">
 			<?php
 			if ( is_array( $tags ) ) {
-				foreach( $tags as $t ) {
+				foreach ( $tags as $t ) {
 					$tag_link = '/?_sft_lf-presentation-tag=' . $t->slug;
 					?>
 					<li>
@@ -108,12 +108,12 @@ endwhile;
 		</div>
 		<?php endif; ?>
 
-		<?php if ( $presenters ): ?>
+		<?php if ( $presenters ) : ?>
 		<div class="presentation-recorded-item__meta">
 			<strong>Presented By:</strong>
 			<?php
 			$comma = '';
-			foreach( $presenters as $presenter ) {
+			foreach ( $presenters as $presenter ) {
 				echo esc_html( $comma );
 				echo '<a href="https://github.com/' . esc_attr( $presenter->slug ) . '">' . esc_html( trim( $presenter->name ) ) . '</a>';
 				$comma = ', ';
@@ -122,7 +122,7 @@ endwhile;
 		</div>
 		<?php endif; ?>
 
-		<?php if ( $event_name ): ?>
+		<?php if ( $event_name ) : ?>
 		<div class="presentation-recorded-item__meta">
 			<strong>Event:</strong>
 			<?php
@@ -136,13 +136,13 @@ endwhile;
 		</div>
 		<?php endif; ?>
 
-		<?php if ( $projects ): ?>
+		<?php if ( $projects ) : ?>
 		<div class="presentation-recorded-item__projects">
 			<strong>Related Projects: </strong>
 			<?php
 			$comma = '';
 			if ( is_array( $projects ) ) {
-				foreach( $projects as $project ) {
+				foreach ( $projects as $project ) {
 					echo esc_html( $comma );
 					$project_link = '/?_sft_lf-project=' . $project->slug;
 					echo '<a class="project" title="See ' . esc_attr( $project->name ) . ' presentations" href="' . esc_url( $project_link ) . '">' . esc_html( $project->name ) . '</a>';
