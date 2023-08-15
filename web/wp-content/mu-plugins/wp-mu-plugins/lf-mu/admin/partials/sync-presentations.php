@@ -52,9 +52,7 @@ foreach ( $remote_body as $pres ) {
 		'post_content' => $pres['description'],
 		'meta_input' => array(
 			'lf_presentation_date' => $pres['date'],
-			'lf_presentation_recording_url' => $pres['video'],
 			'lf_presentation_slides_url' => $lf_presentation_slides_url,
-			'lf_presentation_license' => $pres['license'],
 		),
 	);
 
@@ -63,6 +61,14 @@ foreach ( $remote_body as $pres ) {
 		if ( array_key_exists( 'url', $pres['event'] ) ) {
 			$params['meta_input']['lf_presentation_event_url'] = $pres['event']['url'];
 		}
+	}
+
+	if ( array_key_exists( 'video', $pres ) ) {
+		$params['meta_input']['lf_presentation_recording_url'] = $pres['video'];
+	}
+
+	if ( array_key_exists( 'license', $pres ) ) {
+		$params['meta_input']['lf_presentation_license'] = $pres['license'];
 	}
 
 	$query = new WP_Query(

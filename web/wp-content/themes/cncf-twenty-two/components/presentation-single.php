@@ -19,7 +19,7 @@ $slides_url         = get_post_meta( get_the_ID(), 'lf_presentation_slides_url',
 $presentation_views = get_post_meta( get_the_ID(), 'lf_presentation_recording_views', true );
 $event_name         = get_post_meta( get_the_ID(), 'lf_presentation_event_name', true );
 $event_url          = get_post_meta( get_the_ID(), 'lf_presentation_event_url', true );
-
+$license            = get_post_meta( get_the_ID(), 'lf_presentation_license', true );
 ?>
 <main class="presentation-single">
 	<article class="container wrap">
@@ -149,6 +149,15 @@ endwhile;
 					$comma = ', ';
 				}
 			}
+			?>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( $license ) : ?>
+		<div class="presentation-recorded-item__meta">
+			<strong>License:</strong>
+			<?php
+			echo esc_html( $license );
 			?>
 		</div>
 		<?php endif; ?>
