@@ -137,7 +137,7 @@ endwhile;
 		<?php endif; ?>
 
 		<?php if ( $projects ) : ?>
-		<div class="presentation-recorded-item__projects">
+		<div class="presentation-recorded-item__meta">
 			<strong>Related Projects: </strong>
 			<?php
 			$comma = '';
@@ -145,7 +145,7 @@ endwhile;
 				foreach ( $projects as $project ) {
 					echo esc_html( $comma );
 					$project_link = '/?_sft_lf-project=' . $project->slug;
-					echo '<a class="project" title="See ' . esc_attr( $project->name ) . ' presentations" href="' . esc_url( $project_link ) . '">' . esc_html( $project->name ) . '</a>';
+					echo '<a title="See ' . esc_attr( $project->name ) . ' presentations" href="' . esc_url( $project_link ) . '">' . esc_html( $project->name ) . '</a>';
 					$comma = ', ';
 				}
 			}
