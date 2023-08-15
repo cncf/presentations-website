@@ -58,9 +58,9 @@ foreach ( $remote_body as $pres ) {
 		),
 	);
 
-	if ( $pres['event'] && $pres['event']['name'] ) {
+	if ( array_key_exists( 'event', $pres ) && array_key_exists( 'name', $pres['event'] ) ) {
 		$params['meta_input']['lf_presentation_event_name'] = $pres['event']['name'];
-		if ( $pres['event']['name'] ) {
+		if ( array_key_exists( 'url', $pres['event'] ) ) {
 			$params['meta_input']['lf_presentation_event_url'] = $pres['event']['url'];
 		}
 	}
