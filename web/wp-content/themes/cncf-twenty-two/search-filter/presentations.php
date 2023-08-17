@@ -16,7 +16,7 @@ if ( $query->have_posts() ) : ?>
 <p class="search-filter-results-count">
 	<?php
 	// get total list of presentations.
-	$full_count = $wpdb->get_var( "select count(*) from wp_posts join wp_postmeta on wp_posts.ID = wp_postmeta.post_id where wp_posts.post_type = 'lf_presentation' and wp_posts.post_status = 'publish' and meta_key='lf_presentation_recording_url' and meta_value <> '';" );
+	$full_count = $wpdb->get_var( "select count(*) from wp_posts where wp_posts.post_type = 'lf_presentation' and wp_posts.post_status = 'publish';" );
 
 	// if filter matches all presentations.
 	if ( $full_count == $query->found_posts ) {
