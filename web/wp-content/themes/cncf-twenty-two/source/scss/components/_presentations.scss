@@ -57,7 +57,11 @@
 		height: 200px;
 	}
 	&__image {
-		margin: -10% 0;
+		margin: -11.2% 0;
+		display: block;
+		width: 100%;
+	}
+	&__image_generic {
 		display: block;
 		width: 100%;
 	}
@@ -75,7 +79,7 @@
 		flex-direction: column;
 		// Hack to make dates align.
 		@media (min-width: 1000px) {
-			height: calc(100% - 200px);
+			height: calc(100% - 188px);
 		}
 	}
 	&__title {

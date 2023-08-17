@@ -34,7 +34,7 @@ $tags               = get_the_terms( get_the_ID(), 'lf-presentation-tag' );
 		} else {
 			// setup options.
 			$site_options = get_option( 'lf-mu' );
-			Lf_Utils::display_responsive_images( $site_options['generic_thumb_id'], 'full', '400px', 'presentation-recorded-item__image', 'lazy', get_the_title() );
+			Lf_Utils::display_responsive_images( $site_options['generic_thumb_id'], 'full', '400px', 'presentation-recorded-item__image_generic', 'lazy', get_the_title() );
 		}
 		?>
 		</a>
