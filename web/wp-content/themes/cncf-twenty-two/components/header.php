@@ -37,9 +37,9 @@ endif;
 				<li class="menu-item-no-children">
 					<a href="/about/"><span>About</span></a>
 				</li>
-				<li class="menu-item-no-children">
+				<!-- <li class="menu-item-no-children">
 					<a href="/speakers/"><span>Speakers</span></a>
-				</li>
+				</li> -->
 			</ul>
 
 			<div style="height:60px;" aria-hidden="true"
