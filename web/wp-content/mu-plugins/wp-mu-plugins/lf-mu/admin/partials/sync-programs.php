@@ -21,6 +21,13 @@ $chapters = array(
 	'https://community.cncf.io/api/chapter/296/event/', // https://community.cncf.io/end-user-community/ .
 );
 
+$projects = get_terms(
+	array(
+		'taxonomy'   => 'lf-project',
+		'hide_empty' => false,
+	)
+);
+
 foreach ( $chapters as $chapter ) {
 	$data = wp_remote_get( $chapter );
 	if ( is_wp_error( $data ) || ( wp_remote_retrieve_response_code( $data ) != 200 ) ) {
@@ -34,15 +41,12 @@ foreach ( $chapters as $chapter ) {
 
 			$dt_end = strtotime( $program->end_date );
 
-			if ( $dt_end < time() - ( 14 * DAY_IN_SECONDS ) || $dt_end > time() + DAY_IN_SECONDS ) {
+			if ( $dt_end > time() + DAY_IN_SECONDS ) {
 				// avoid updating programs that ended more than 2 weeks ago to limit computation.
 				// don't import programs that haven't ended yet.
 				continue;
 			}
 
-			$post_content = '';
-			$lf_presentation_recording_url = '';
-			$lf_presentation_slides_url = '';
 
 			// grab program details for recorded view.
 			$details_data = wp_remote_get( 'https://community.cncf.io/api/event/' . $program->id );
@@ -59,6 +63,7 @@ foreach ( $chapters as $chapter ) {
 				continue;
 			}
 
+			$lf_presentation_slides_url = '';
 			if ( $details->slideshare_url ) {
 				preg_match( '/id=(\d*)&/', $details->slideshare_url, $matches );
 				if ( array_key_exists( 1, $matches ) ) {
@@ -96,10 +101,17 @@ foreach ( $chapters as $chapter ) {
 				$params['ID'] = get_the_ID(); // post to update.
 				$newid = wp_insert_post( $params ); // will update the post.
 			} else {
-				$newid = wp_insert_post( $params ); // will insert new pose.
+				$newid = wp_insert_post( $params ); // will insert new post.
 				if ( $newid ) {
 					wp_set_object_terms( $newid, 'online-program', 'lf-presentation-tag', true );
 					wp_set_object_terms( $newid, 'en', 'lf-language', true );
+				}
+			}
+
+			// tag projects for post by searching in name and description.
+			foreach ( $projects as $project ) {
+				if ( false != strpos( $post_content, $project->name ) || false != strpos( $program->title, $project->name ) ) {
+					wp_set_object_terms( $newid, $project->slug, 'lf-project', true );
 				}
 			}
 		}
