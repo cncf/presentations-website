@@ -76,7 +76,7 @@
 
 		> *:not(:last-of-type) {
 			flex-grow: 1;
-			margin-right: 30px;
+			margin-right: 12px;
 		}
 
 		> *:last-of-type {
@@ -115,13 +115,6 @@
 		color: $black;
 		width: 100%;
 		padding: 10px 20px;
-	}
-	&[data-sf-form-id='8151'] {
-		> ul {
-			> *:not(:last-of-type) {
-				margin-right: 12px;
-			}
-		}
 	}
 }
 
