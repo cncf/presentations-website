@@ -381,4 +381,40 @@ class Lf_Mu_Public {
 
 		return $supported;
 	}
+
+	/**
+	 * Adjusts image generation parameters.
+	 *
+	 * @link https://theseoframework.com/docs/api/filters/#append-image-generators-for-social-images
+	 * @param array      $params  : [
+	 *    string  size:     The image size to use.
+	 *    boolean multi:    Whether to allow multiple images to be returned. This may be overwritten by generators to 'false'.
+	 *    array   cbs:      The callbacks to parse. Ideally be generators, so we can halt remotely.
+	 *    array   fallback: The callbacks to parse. Ideally be generators, so we can halt remotely.
+	 * ];
+	 * @param array|null $args    The query arguments. Contains 'id', 'taxonomy', and 'pta'.
+	 *                            Is null when the query is auto-determined.
+	 * @param string     $context The filter context. Default 'social'.
+	 *                            May be (for example) 'breadcrumb' or 'article' for structured data.
+	 * @return array $params
+	 */
+	public function tsf_custom_image_generation_args( $params, $args = null, $context = 'social' ) {
+
+		if ( 'social' !== $context ) {
+			return $params;
+		}
+
+		$post_type = 'lf_presentation';
+
+		if ( is_singular( $post_type ) ) {
+			$params['cbs'] = array_merge(
+				array(
+					'custom' => 'my_custom_tsf_image_generator',
+				), // prepend to regular callbacks.
+				$params['cbs'],
+			);
+		}
+
+		return $params;
+	}
 }

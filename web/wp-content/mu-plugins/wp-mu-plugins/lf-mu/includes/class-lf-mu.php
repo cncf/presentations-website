@@ -238,6 +238,7 @@ class Lf_Mu {
 		$this->loader->add_filter( 'pre_get_posts', $plugin_public, 'remove_news_from_rss' );
 		$this->loader->add_action( 'send_headers', $plugin_public, 'add_header_cache', 15 );
 		$this->loader->add_filter( 'the_seo_framework_query_supports_seo', $plugin_public, 'tsf_meta_temp_fix' );
+		$this->loader->add_filter( 'the_seo_framework_image_generation_params', $plugin_public, 'tsf_custom_image_generation_args', 10, 3 );
 
 	}
 

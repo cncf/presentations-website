@@ -73,3 +73,21 @@ function run_lf_mu() {
 
 }
 run_lf_mu();
+
+/**
+ * Generates social share image URL for presentations.
+ *
+ * @generator
+ *
+ * @param array|null $args The query arguments. Accepts 'id' and 'taxonomy'.
+ *                         Leave null to autodetermine query.
+ * @param string     $size The size of the image to get.
+ * @yield array : {
+ *    string url: The image URL location
+ * }
+ */
+function my_custom_tsf_image_generator( $args = null, $size = 'full' ) {
+	yield array(
+		'url' => get_the_permalink() . 'social-image.jpg/',
+	);
+}
