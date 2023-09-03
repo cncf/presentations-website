@@ -83,11 +83,13 @@ run_lf_mu();
  *                         Leave null to autodetermine query.
  * @param string     $size The size of the image to get.
  * @yield array : {
- *    string url: The image URL location
+ *    string url: The image URL location,
+ *    int    id:  The image ID,
  * }
  */
 function my_custom_tsf_image_generator( $args = null, $size = 'full' ) {
 	yield array(
 		'url' => get_the_permalink() . 'social-image.jpg/',
+		'id'  => 0,
 	);
 }
