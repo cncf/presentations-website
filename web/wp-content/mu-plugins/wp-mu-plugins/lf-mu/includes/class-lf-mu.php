@@ -166,6 +166,7 @@ class Lf_Mu {
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'change_adminbar_colors' );
 		$this->loader->add_action( 'wp_head', $plugin_admin, 'change_adminbar_colors' );
 		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'register_lf_rest_routes' );
+		$this->loader->add_filter( 'bsi_admin_menu_location', $plugin_admin, 'move_bsi_settings' );
 
 		// Sync projects with landscape.
 		$this->loader->add_action( 'lf_sync_projects', $plugin_admin, 'sync_projects' );
@@ -239,6 +240,8 @@ class Lf_Mu {
 		$this->loader->add_action( 'send_headers', $plugin_public, 'add_header_cache', 15 );
 		$this->loader->add_filter( 'the_seo_framework_query_supports_seo', $plugin_public, 'tsf_meta_temp_fix' );
 		$this->loader->add_filter( 'the_seo_framework_image_generation_params', $plugin_public, 'tsf_custom_image_generation_args', 10, 3 );
+		$this->loader->add_filter( 'bsi_settings_jpg_quality_level', $plugin_public, 'set_quality_level_social_share', 10, 3 );
+		$this->loader->add_filter( 'bsi_text', $plugin_public, 'remove_sitename_social_share', 10, 3 );
 
 	}
 

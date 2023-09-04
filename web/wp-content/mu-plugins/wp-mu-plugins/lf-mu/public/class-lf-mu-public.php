@@ -417,4 +417,23 @@ class Lf_Mu_Public {
 
 		return $params;
 	}
+
+	/**
+	 * Sets the quality level of the social share image generated from the Branded Social Images plugin.
+	 */
+	public function set_quality_level_social_share() {
+		return 90;
+	}
+
+	/**
+	 * Removes the site name from the social share text.
+	 * See https://wordpress.org/support/topic/add-site-name-at-the-end-of-each-post/ .
+	 *
+	 * @param string $text social share text.
+	 */
+	public function remove_sitename_social_share( $text ) {
+		$text = explode( '-', $text );
+		$text = trim( $text[0] );
+		return $text;
+	}
 }

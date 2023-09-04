@@ -581,4 +581,11 @@ class Lf_Mu_Admin {
 		$controller = new LF_MU_REST_Controller();
 		$controller->register_routes();
 	}
+
+	/**
+	 * Moves Branded Social Images to the Settings menu.
+	 */
+	public function move_bsi_settings() {
+		return 'settings';
+	}
 }
