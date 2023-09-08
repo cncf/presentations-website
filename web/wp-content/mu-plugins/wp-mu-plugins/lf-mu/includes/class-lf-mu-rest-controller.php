@@ -26,14 +26,14 @@ class LF_MU_REST_Controller extends WP_REST_Controller {
 	public function register_routes() {
 		$version = '1';
 		$namespace = 'lf/v' . $version;
-		$base = 'sync_people';
+		$base = 'sync_presentations';
 		register_rest_route(
 			$namespace,
 			'/' . $base,
 			array(
 				array(
 					'methods'             => WP_REST_Server::ALLMETHODS,
-					'callback'            => array( $this, 'sync_people' ),
+					'callback'            => array( $this, $base ),
 					'permission_callback' => '__return_true',
 					'args'                => array(),
 				),
@@ -42,12 +42,12 @@ class LF_MU_REST_Controller extends WP_REST_Controller {
 	}
 
 	/**
-	 * Sync People with the GitHub People repo.
+	 * Sync Presentations with the GitHub Presentations repo.
 	 *
 	 * @param WP_REST_Request $request Full data about the request.
 	 * @return WP_Error|WP_REST_Response
 	 */
-	public function sync_people( $request ) {
+	public function sync_presentations( $request ) {
 
 		if ( ! is_object( $request ) ) {
 			return new WP_Error( 'error', esc_html__( 'Error with the request object.' ), array( 'status' => 500 ) );
@@ -56,11 +56,11 @@ class LF_MU_REST_Controller extends WP_REST_Controller {
 		$json = json_decode( $request->get_body() );
 
 		if ( is_object( $json ) && property_exists( $json, 'repository' ) && property_exists( $json, 'action' ) && property_exists( $json, 'pull_request' ) ) {
-			if ( 'people' === $json->repository->name && 'closed' === $json->action && true === $json->pull_request->merged ) {
+			if ( 'presentations' === $json->repository->name && 'closed' === $json->action && true === $json->pull_request->merged ) {
 				// sync people after 6 minutes.
 				// This delay is required in order for GitHub to update its raw files with the people data.
-				wp_schedule_single_event( time() + 360, 'lf_sync_people' );
-				return new WP_REST_Response( array( 'Success. People synced.' ), 200 );
+				wp_schedule_single_event( time() + 360, 'cncf_sync_presentations' );
+				return new WP_REST_Response( array( 'Success. Presentations synced.' ), 200 );
 			}
 		}
 

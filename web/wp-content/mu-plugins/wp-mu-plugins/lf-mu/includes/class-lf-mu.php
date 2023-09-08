@@ -187,9 +187,6 @@ class Lf_Mu {
 		}
 
 		$this->loader->add_action( 'cncf_sync_presentations', $plugin_admin, 'sync_presentations' );
-		if ( ! wp_next_scheduled( 'cncf_sync_presentations' ) ) {
-			wp_schedule_event( time(), 'twicedaily', 'cncf_sync_presentations' );
-		}
 
 		// Sync people with https://github.com/cncf/people.
 		// $this->loader->add_action( 'lf_sync_people', $plugin_admin, 'sync_people' ); //phpcs:ignore.
