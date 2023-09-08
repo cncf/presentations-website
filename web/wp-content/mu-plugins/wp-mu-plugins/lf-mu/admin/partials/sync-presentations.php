@@ -121,3 +121,6 @@ foreach ( $remote_body as $pres ) {
 		}
 	}
 }
+
+// clear the site cache.
+pantheon_wp_clear_edge_all();
