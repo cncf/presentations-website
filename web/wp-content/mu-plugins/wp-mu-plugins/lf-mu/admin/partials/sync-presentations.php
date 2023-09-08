@@ -40,7 +40,7 @@ foreach ( $remote_body as $pres ) {
 	if ( ! array_key_exists( 'slides', $pres ) ) {
 		return;
 	}
-	
+
 	$lf_presentation_slides_url = $pres['slides'];
 
 	if ( $lf_presentation_slides_url ) {
