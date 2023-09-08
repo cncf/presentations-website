@@ -36,6 +36,11 @@ if ( is_wp_error( $data ) || ( wp_remote_retrieve_response_code( $data ) != 200 
 $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 
 foreach ( $remote_body as $pres ) {
+	// Slides are required as it is used as the key for a presentation.
+	if ( ! array_key_exists( 'slides', $pres ) ) {
+		return;
+	}
+	
 	$lf_presentation_slides_url = $pres['slides'];
 
 	if ( $lf_presentation_slides_url ) {
@@ -71,15 +76,10 @@ foreach ( $remote_body as $pres ) {
 		$params['meta_input']['lf_presentation_license'] = $pres['license'];
 	}
 
-	// Slides are required as it is used as the key for a presentation.
-	if ( ! array_key_exists( 'slides', $pres ) ) {
-		return;
-	}
-
 	$query = new WP_Query(
 		array(
 			'post_type' => 'lf_presentation',
-			'meta_value' => $pres['slides'],
+			'meta_value' => $lf_presentation_slides_url,
 			'no_found_rows' => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
