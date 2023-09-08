@@ -38,7 +38,7 @@ $remote_body = yaml_parse( wp_remote_retrieve_body( $data ) );
 foreach ( $remote_body as $pres ) {
 	// Slides are required as it is used as the key for a presentation.
 	if ( ! array_key_exists( 'slides', $pres ) ) {
-		return;
+		continue;
 	}
 
 	$lf_presentation_slides_url = $pres['slides'];
