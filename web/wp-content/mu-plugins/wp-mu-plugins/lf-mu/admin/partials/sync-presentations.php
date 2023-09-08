@@ -71,6 +71,11 @@ foreach ( $remote_body as $pres ) {
 		$params['meta_input']['lf_presentation_license'] = $pres['license'];
 	}
 
+	// Slides are required as it is used as the key for a presentation.
+	if ( ! array_key_exists( 'slides', $pres ) ) {
+		return;
+	}
+
 	$query = new WP_Query(
 		array(
 			'post_type' => 'lf_presentation',
@@ -107,11 +112,11 @@ foreach ( $remote_body as $pres ) {
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
 
-		if ( is_array( $pres['tags'] ) ) {
+		if ( array_key_exists( 'tags', $pres ) && is_array( $pres['tags'] ) ) {
 			wp_set_object_terms( $newid, $pres['tags'], 'lf-presentation-tag' );
 		}
 
-		if ( is_array( $pres['projects'] ) ) {
+		if ( array_key_exists( 'projects', $pres ) && is_array( $pres['projects'] ) ) {
 			wp_set_object_terms( $newid, $pres['projects'], 'lf-project' );
 		}
 	}

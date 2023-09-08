@@ -57,9 +57,9 @@ class LF_MU_REST_Controller extends WP_REST_Controller {
 
 		if ( is_object( $json ) && property_exists( $json, 'repository' ) && property_exists( $json, 'action' ) && property_exists( $json, 'pull_request' ) ) {
 			if ( 'presentations' === $json->repository->name && 'closed' === $json->action && true === $json->pull_request->merged ) {
-				// sync people after 6 minutes.
-				// This delay is required in order for GitHub to update its raw files with the people data.
-				wp_schedule_single_event( time() + 360, 'cncf_sync_presentations' );
+				// sync presentations after 10 minutes.
+				// This delay is required in order for GitHub to update its raw presentations.yaml file.
+				wp_schedule_single_event( time() + 600, 'cncf_sync_presentations' );
 				return new WP_REST_Response( array( 'Success. Presentations synced.' ), 200 );
 			}
 		}
