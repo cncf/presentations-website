@@ -112,12 +112,20 @@ foreach ( $remote_body as $pres ) {
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
 
+		// Tag doesn't need to already exist. New tags will be added.
 		if ( array_key_exists( 'tags', $pres ) && is_array( $pres['tags'] ) ) {
 			wp_set_object_terms( $newid, $pres['tags'], 'lf-presentation-tag' );
 		}
 
+		// Project needs to be a CNCF project so check if term exists first.
 		if ( array_key_exists( 'projects', $pres ) && is_array( $pres['projects'] ) ) {
-			wp_set_object_terms( $newid, $pres['projects'], 'lf-project' );
+			$cncf_projects = array();
+			foreach ( $pres['projects'] as $p ) {
+				if ( term_exists( $p, 'lf-project' ) ) {
+					$cncf_projects[] = $p;
+				}
+			}
+			wp_set_object_terms( $newid, $cncf_projects, 'lf-project' );
 		}
 	}
 }
