@@ -177,14 +177,11 @@ class LF_Utils {
 		} elseif ( $event_date_start == $event_date_end ) {
 			// Start and end are same day.
 			$date = esc_html( $event_date_start->format( 'F j, Y' ) );
-		} else {
-			// If start AND end month the same.
-			if ( $event_date_start->format( 'F' ) === $event_date_end->format( 'F' ) ) {
+		} elseif ( $event_date_start->format( 'F' ) === $event_date_end->format( 'F' ) ) {
 				$date = esc_html( $event_date_start->format( 'F j' ) ) . '-' . esc_html( $event_date_end->format( 'j, Y' ) );
-			} else {
+		} else {
 				// Show both start and end month.
 				$date = esc_html( $event_date_start->format( 'M j' ) ) . ' - ' . esc_html( $event_date_end->format( 'M j, Y' ) );
-			}
 		}
 		return $date;
 	}

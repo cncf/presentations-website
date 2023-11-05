@@ -389,7 +389,7 @@ class Lf_Mu_Public {
 	 *    boolean multi:    Whether to allow multiple images to be returned. This may be overwritten by generators to 'false'.
 	 *    array   cbs:      The callbacks to parse. Ideally be generators, so we can halt remotely.
 	 *    array   fallback: The callbacks to parse. Ideally be generators, so we can halt remotely.
-	 * ];
+	 * ].
 	 * @param array|null $args    The query arguments. Contains 'id', 'taxonomy', and 'pta'.
 	 *                            Is null when the query is auto-determined.
 	 * @param string     $context The filter context. Default 'social'.
