@@ -18,7 +18,9 @@ $description      = get_post_meta( get_the_id(), 'lf_project_description', true 
 $project_category = get_post_meta( get_the_ID(), 'lf_project_category', true );
 $external_url     = get_post_meta( get_the_ID(), 'lf_project_external_url', true );
 
-$date_accepted = get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ? gmdate( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ) ) : '';
+$date_accepted   = get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ? gmdate( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ) ) : '';
+$date_incubating = get_post_meta( get_the_ID(), 'lf_project_date_incubating', true ) ? gmdate( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'lf_project_date_incubating', true ) ) ) : '';
+$date_graduated  = get_post_meta( get_the_ID(), 'lf_project_date_graduated', true ) ? gmdate( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'lf_project_date_graduated', true ) ) ) : '';
 
 // Links for Project.
 $github         = get_post_meta( get_the_ID(), 'lf_project_github', true );
@@ -63,22 +65,19 @@ $project_slug = strtolower( get_the_title() );
 				}
 
 				if ( $date_accepted && $stage ) {
-					?>
-				<p class="projects-single-box__accepted">
-					<?php the_title(); ?>&nbsp;was accepted to CNCF on
-<strong><?php echo esc_html( $date_accepted ); ?></strong>
-and is at the
-<strong><?php echo esc_html( $stage ); ?></strong>
-project maturity level.
-</p>
-					<?php
+					if ( 'sandbox' == strtolower( $stage ) ) {
+						echo esc_html( get_the_title() ) . ' was accepted to CNCF on ' . esc_html( $date_accepted ) . ' at the <strong>Sandbox</strong> maturity level.';
+					} elseif ( $date_accepted == $date_incubating && 'incubating' == strtolower( $stage ) ) {
+						echo esc_html( get_the_title() ) . ' was accepted to CNCF on ' . esc_html( $date_accepted ) . ' at the <strong>Incubating</strong> maturity level.';
+					} elseif ( $date_accepted == $date_incubating && 'graduated' == strtolower( $stage ) ) {
+						echo esc_html( get_the_title() ) . ' was accepted to CNCF on ' . esc_html( $date_accepted ) . ' at the <strong>Incubating</strong> maturity level and then moved to the <strong>Graduated</strong> maturity level on ' . esc_html( $date_graduated ) . '.';
+					} elseif ( $date_incubating && 'incubating' == strtolower( $stage ) ) {
+						echo esc_html( get_the_title() ) . ' was accepted to CNCF on ' . esc_html( $date_accepted ) . ' and moved to the <strong>Incubating</strong> maturity level on ' . esc_html( $date_incubating ) . '.';
+					} elseif ( $date_incubating && $date_graduated && 'graduated' == strtolower( $stage ) ) {
+						echo esc_html( get_the_title() ) . ' was accepted to CNCF on ' . esc_html( $date_accepted ) . ', moved to the <strong>Incubating</strong> maturity level on ' . esc_html( $date_incubating ) . ', and then moved to the <strong>Graduated</strong> maturity level on ' . esc_html( $date_graduated ) . '.';
+					}
 				} elseif ( $stage ) {
-					?>
-				<p class="projects-single-box__accepted">
-					<?php the_title(); ?>&nbsp;is at the <strong><?php echo esc_html( $stage ); ?></strong>
-project maturity level.
-</p>
-					<?php
+					echo esc_html( get_the_title() ) . ' is at the <strong>' . esc_html( $stage ) . '</strong> maturity level.';
 				}
 				?>
 
@@ -119,9 +118,9 @@ endif;
 							href="<?php echo esc_html( $stack_overflow ); ?>"><?php LF_utils::get_svg( '/social/boxed-stack-overflow.svg' ); ?></a>
 						<?php endif; ?>
 
-						<?php if ( $twitter && ( preg_match( '/^https?:\/\/(www\.)?twitter\.com\/(#!\/)?(?<name>[^\/]+)(\/\w+)*$/', $twitter, $matches ) ) && ( 'CloudNativeFdn' != $matches['name'] ) ) : ?>
-						<a title="<?php the_title_attribute(); ?> on Twitter"
-							href="<?php echo esc_html( $twitter ); ?>"><?php LF_utils::get_svg( '/social/boxed-twitter.svg' ); ?></a>
+						<?php if ( $twitter && ( preg_match( '/^https?:\/\/(www\.)?(twitter\.com|x\.com)\/(#!\/)?(?<name>[^\/]+)(\/\w+)*$/', $twitter, $matches ) ) && ( 'CloudNativeFdn' != $matches['name'] ) ) : ?>
+						<a title="<?php the_title_attribute(); ?> on X"
+							href="<?php echo esc_html( $twitter ); ?>"><?php LF_utils::get_svg( '/social/boxed-x.svg' ); ?></a>
 						<?php endif; ?>
 
 						<?php if ( $blog ) : ?>
@@ -224,15 +223,15 @@ endif;
 		$programs_args = array(
 			'posts_per_page'     => 3,
 			'ignore_custom_sort' => true,
-			'post_type'          => array( 'lf_presentation' ),
+			'post_type'          => array( 'lf_webinar' ),
 			'post_status'        => array( 'publish' ),
-			'meta_key'           => 'lf_presentation_date',
+			'meta_key'           => 'lf_webinar_date',
 			'order'              => 'DESC',
 			'orderby'            => 'meta_value',
 			'no_found_rows'      => true,
 			'meta_query'         => array(
 				array(
-					'key'     => 'lf_presentation_recording_url',
+					'key'     => 'lf_webinar_recording_url',
 					'value'   => 0,
 					'compare' => '>',
 				),
@@ -261,39 +260,33 @@ endif;
 				</div>
 				<div class="wp-block-column is-vertically-aligned-bottom"
 					style="flex-basis:30%">
-					<p class="has-text-align-right is-style-link-cta"><a href="<?php echo esc_url( '/online-programs?_sft_lf-project=' . $project_slug ); ?>">See
-more recordings</a></p>
+					<p class="has-text-align-right is-style-link-cta"><a href="<?php echo esc_url( '/online-programs?_sft_lf-project=' . $project_slug ); ?>">See more recordings</a></p>
 				</div>
 			</div>
 			<div style="height:40px" aria-hidden="true"
 				class="wp-block-spacer is-style-20-40"></div>
-<!-- Embeded svg sprite reference -->
-<svg display="none" xmlns="http://www.w3.org/2000/svg">
- <symbol id="play-button" fill="none" viewBox="0 0 70 71" id=".5155955424562817" xmlns="http://www.w3.org/2000/svg">
- <g clip-path="url(#clip0_4409_15889)">
- <path d="M35 70.468c19.33 0 35-15.67 35-35s-15.67-35-35-35-35 15.67-35 35 15.67 35 35 35z" fill="#D62293"/>
- <path d="M26.676 51.298V18.964a2.682 2.682 0 0 1 4.394-2.06l19.367 16.177a2.686 2.686 0 0 1 0 4.115L31.07 53.362a2.676 2.676 0 0 1-4.394-2.064z" fill="#fff"/>
- </g>
- </symbol>
-</svg>
-
-			<div class="presentations columns-three">
+	<!-- Embeded svg sprite reference -->
+	<svg display="none" xmlns="http://www.w3.org/2000/svg">
+	<symbol id="play-button" fill="none" viewBox="0 0 70 71" id=".5155955424562817" xmlns="http://www.w3.org/2000/svg">
+	<g clip-path="url(#clip0_4409_15889)">
+	<path d="M35 70.468c19.33 0 35-15.67 35-35s-15.67-35-35-35-35 15.67-35 35 15.67 35 35 35z" fill="#D62293"/>
+	<path d="M26.676 51.298V18.964a2.682 2.682 0 0 1 4.394-2.06l19.367 16.177a2.686 2.686 0 0 1 0 4.115L31.07 53.362a2.676 2.676 0 0 1-4.394-2.064z" fill="#fff"/>
+	</g>
+	</symbol>
+	</svg>
+		<div class="webinars columns-three">
 				<?php
 				while ( $programs_query->have_posts() ) :
 					$programs_query->the_post();
-
-					get_template_part( 'components/presentation-recorded-item' );
-
-		endwhile;
+					get_template_part( 'components/webinar-recorded-item' );
+				endwhile;
 				?>
-
 			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
+			<div style="height:40px" aria-hidden="true" class="wp-block-spacer is-style-20-40"></div>
+
 		</div>
 
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
+		<div style="height:120px" aria-hidden="true" class="wp-block-spacer is-style-80-120"></div>
 
 			<?php
 			wp_reset_postdata();
@@ -327,8 +320,7 @@ endif;
 				<div class="wp-block-column is-vertically-aligned-bottom"
 					style="flex-basis:20%">
 					<p class="has-text-align-right is-style-link-cta"><a
-href="<?php echo esc_url( '/?post_type=post&s=' . $project_slug ); ?>">See
-all news</a></p>
+href="<?php echo esc_url( '/?post_type=post&s=' . $project_slug ); ?>">See all news</a></p>
 				</div>
 			</div>
 			<div style="height:40px" aria-hidden="true"
@@ -344,17 +336,18 @@ all news</a></p>
 				?>
 			</div>
 
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
+			<div style="height:40px" aria-hidden="true"	class="wp-block-spacer is-style-20-40"></div>
 		</div>
 
-
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
+		<div style="height:120px" aria-hidden="true" class="wp-block-spacer is-style-80-120"></div>
 
 			<?php
 			wp_reset_postdata();
 endif;
+		?>
+
+		<?php
+		echo do_shortcode( '[shopify_products collection="' . $post->post_name . '"]' );
 		?>
 
 	</article>
