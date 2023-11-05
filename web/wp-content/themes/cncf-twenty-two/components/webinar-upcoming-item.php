@@ -13,15 +13,15 @@
 $company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
 
 // registration URL.
-$presentation_reg_url           = get_post_meta( get_the_ID(), 'lf_presentation_registration_url', true );
+$presentation_reg_url = get_post_meta( get_the_ID(), 'lf_presentation_registration_url', true );
 
 // get presentation date and time.
-$presentation_date = get_post_meta( get_the_ID(), 'lf_presentation_date', true );
+$presentation_date              = get_post_meta( get_the_ID(), 'lf_presentation_date', true );
 $presentation_start_time        = get_post_meta( get_the_ID(), 'lf_presentation_start_time', true );
 $presentation_start_time_period = get_post_meta( get_the_ID(), 'lf_presentation_start_time_period', true );
 $presentation_timezone          = get_post_meta( get_the_ID(), 'lf_presentation_timezone', true );
 $dat_presentation_start         = Lf_Utils::get_presentation_date_time( $presentation_date, $presentation_start_time, $presentation_start_time_period, $presentation_timezone, true );
-$date_and_time             = $dat_presentation_start->format( 'D F j' );
+$date_and_time                  = $dat_presentation_start->format( 'D F j' );
 
 if ( $presentation_reg_url ) {
 	$link_url = $presentation_reg_url;

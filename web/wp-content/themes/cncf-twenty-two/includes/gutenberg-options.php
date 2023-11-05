@@ -111,6 +111,5 @@ function lf_register_block_patterns() {
 		);
 
 	}
-
 }
 add_action( 'init', 'lf_register_block_patterns' );

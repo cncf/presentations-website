@@ -23,7 +23,7 @@ if ( ! function_exists( 'yaml_parse' ) ) {
 }
 
 $presentations_url = 'https://raw.githubusercontent.com/cncf/presentations/master/presentations.yaml';
-$args = array(
+$args              = array(
 	'timeout'   => 100,
 	'sslverify' => false,
 );
@@ -51,12 +51,12 @@ foreach ( $remote_body as $pres ) {
 	}
 
 	$params = array(
-		'post_title' => $pres['name'],
-		'post_type' => 'lf_presentation',
-		'post_status' => 'publish',
+		'post_title'   => $pres['name'],
+		'post_type'    => 'lf_presentation',
+		'post_status'  => 'publish',
 		'post_content' => $pres['description'],
-		'meta_input' => array(
-			'lf_presentation_date' => $pres['date'],
+		'meta_input'   => array(
+			'lf_presentation_date'       => $pres['date'],
 			'lf_presentation_slides_url' => $lf_presentation_slides_url,
 		),
 	);
@@ -78,13 +78,13 @@ foreach ( $remote_body as $pres ) {
 
 	$query = new WP_Query(
 		array(
-			'post_type' => 'lf_presentation',
-			'meta_value' => $lf_presentation_slides_url,
-			'no_found_rows' => true,
+			'post_type'              => 'lf_presentation',
+			'meta_value'             => $lf_presentation_slides_url,
+			'no_found_rows'          => true,
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false,
-			'fields' => 'ids',
-			'posts_per_page' => 1,
+			'fields'                 => 'ids',
+			'posts_per_page'         => 1,
 		)
 	);
 	if ( $query->have_posts() ) {
@@ -105,7 +105,7 @@ foreach ( $remote_body as $pres ) {
 					$args = array(
 						'slug' => $presenter['github'],
 					);
-					$t = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+					$t    = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
 				}
 				$p[] = $t['term_id'];
 			}

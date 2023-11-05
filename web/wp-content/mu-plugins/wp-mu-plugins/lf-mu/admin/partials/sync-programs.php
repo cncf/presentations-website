@@ -54,8 +54,8 @@ foreach ( $chapters as $chapter ) {
 				continue;
 			}
 
-			$details = json_decode( wp_remote_retrieve_body( $details_data ) );
-			$post_content = strip_tags( $details->description );
+			$details                       = json_decode( wp_remote_retrieve_body( $details_data ) );
+			$post_content                  = strip_tags( $details->description );
 			$lf_presentation_recording_url = $details->video_url;
 
 			if ( ! $lf_presentation_recording_url ) {
@@ -72,34 +72,34 @@ foreach ( $chapters as $chapter ) {
 			}
 
 			$params = array(
-				'post_title' => $program->title,
-				'post_type' => 'lf_presentation',
-				'post_status' => 'publish',
+				'post_title'   => $program->title,
+				'post_type'    => 'lf_presentation',
+				'post_status'  => 'publish',
 				'post_content' => $post_content,
-				'meta_input' => array(
-					'lf_presentation_date' => substr( $program->start_date, 0, 10 ),
-					'lf_presentation_event_name' => 'Cloud Native Community Groups',
-					'lf_presentation_event_url' => $program->url,
+				'meta_input'   => array(
+					'lf_presentation_date'          => substr( $program->start_date, 0, 10 ),
+					'lf_presentation_event_name'    => 'Cloud Native Community Groups',
+					'lf_presentation_event_url'     => $program->url,
 					'lf_presentation_recording_url' => $lf_presentation_recording_url,
-					'lf_presentation_slides_url' => $lf_presentation_slides_url,
+					'lf_presentation_slides_url'    => $lf_presentation_slides_url,
 				),
 			);
 
 			$query = new WP_Query(
 				array(
-					'post_type' => 'lf_presentation',
-					'meta_value' => $program->url,
-					'no_found_rows' => true,
+					'post_type'              => 'lf_presentation',
+					'meta_value'             => $program->url,
+					'no_found_rows'          => true,
 					'update_post_meta_cache' => false,
 					'update_post_term_cache' => false,
-					'fields' => 'ids',
-					'posts_per_page' => 1,
+					'fields'                 => 'ids',
+					'posts_per_page'         => 1,
 				)
 			);
 			if ( $query->have_posts() ) {
 				$query->the_post();
 				$params['ID'] = get_the_ID(); // post to update.
-				$newid = wp_insert_post( $params ); // will update the post.
+				$newid        = wp_insert_post( $params ); // will update the post.
 			} else {
 				$newid = wp_insert_post( $params ); // will insert new post.
 				if ( $newid ) {

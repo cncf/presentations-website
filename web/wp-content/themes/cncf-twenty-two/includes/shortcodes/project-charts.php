@@ -147,11 +147,11 @@ add_shortcode( 'projects-maturity-chart', 'add_projects_maturity_chart_shortcode
  */
 function add_projects_accepted_chart_shortcode( $atts ) {
 
-	$maturity_data  = get_maturity_data();
-	$start_year     = 2016;
-	$accepted       = array();
-	$background     = array();
-	$current_year   = (int) gmdate( 'Y' );
+	$maturity_data = get_maturity_data();
+	$start_year    = 2016;
+	$accepted      = array();
+	$background    = array();
+	$current_year  = (int) gmdate( 'Y' );
 
 	for ( $this_year = $start_year; $this_year <= $current_year; $this_year++ ) {
 		$accepted[ $this_year ] = 0;

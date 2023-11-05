@@ -224,7 +224,6 @@ class LF_Utils {
 		$author_byline = 'By ' . $author;
 
 		return $author_byline;
-
 	}
 
 	/**
@@ -485,7 +484,7 @@ class LF_Utils {
 				$project_query->the_post();
 				$stacked_logo_url = get_post_meta( get_the_ID(), 'lf_project_logo', true );
 				if ( has_term( 'graduated', 'lf-project-stage', get_the_ID() ) ) {
-					$graduated_count++;
+					++$graduated_count;
 					if ( $stacked_logo_url ) {
 						$all_project_logos[] = array(
 							'title' => get_the_title(),
@@ -494,7 +493,7 @@ class LF_Utils {
 						);
 					}
 				} elseif ( has_term( 'incubating', 'lf-project-stage', get_the_ID() ) ) {
-					$incubating_count++;
+					++$incubating_count;
 					if ( $stacked_logo_url ) {
 						$all_project_logos[] = array(
 							'title' => get_the_title(),
@@ -503,7 +502,7 @@ class LF_Utils {
 						);
 					}
 				} elseif ( has_term( 'sandbox', 'lf-project-stage', get_the_ID() ) ) {
-					$sandbox_count++;
+					++$sandbox_count;
 				}
 			}
 		}
@@ -518,7 +517,6 @@ class LF_Utils {
 		wp_reset_postdata();
 
 		return $project_metrics;
-
 	}
 
 	/**
@@ -587,7 +585,6 @@ class LF_Utils {
 			}
 		}
 		return json_decode( $tech_radars );
-
 	}
 
 	/**

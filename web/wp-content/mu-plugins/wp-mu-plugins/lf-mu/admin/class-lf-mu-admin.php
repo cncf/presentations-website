@@ -51,7 +51,7 @@ class Lf_Mu_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 
-		$options       = get_option( $this->plugin_name );
+		$options            = get_option( $this->plugin_name );
 		$this->presentation = 'presentation';
 	}
 
