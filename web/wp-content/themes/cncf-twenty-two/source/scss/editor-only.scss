@@ -42,6 +42,8 @@
 
 		p {
 			line-height: 1.5;
+			margin-block-start: revert;
+			margin-block-end: revert;
 		}
 
 		// style links same as frontend.
@@ -60,6 +62,9 @@
 
 		ul,
 		ol {
+			list-style-type: revert;
+			padding: revert;
+			margin: revert;
 			li {
 				margin-bottom: 10px;
 				line-height: 1.5;
