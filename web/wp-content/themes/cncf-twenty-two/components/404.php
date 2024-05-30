@@ -10,7 +10,6 @@
  */
 
 ?>
-
 <main>
 	<article class="container wrap">
 
@@ -28,7 +27,7 @@ style="max-height: 50vh; width: auto;">
 		<div style="height:40px" aria-hidden="true" class="wp-block-spacer">
 		</div>
 
-		<h1 class="has-text-align-center">The page you entered is out of sync
+		<h1 class="has-text-align-center">The page you entered is out of sync!
 		</h1>
 
 		<div style="height:50px" aria-hidden="true" class="wp-block-spacer is-style-30-50">
