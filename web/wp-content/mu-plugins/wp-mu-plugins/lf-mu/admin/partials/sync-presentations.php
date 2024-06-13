@@ -100,14 +100,16 @@ foreach ( $remote_body as $pres ) {
 		if ( is_array( $pres['presenters'] ) ) {
 			$p = array();
 			foreach ( $pres['presenters'] as $presenter ) {
-				$t = term_exists( $presenter['github'], 'lf-presenter' );
-				if ( ! $t ) {
-					$args = array(
-						'slug' => $presenter['github'],
-					);
-					$t    = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+				if ( array_key_exists( 'github', $presenter ) ) {
+					$t = term_exists( $presenter['github'], 'lf-presenter' );
+					if ( ! $t ) {
+						$args = array(
+							'slug' => $presenter['github'],
+						);
+						$t    = wp_insert_term( $presenter['name'], 'lf-presenter', $args );
+					}
+					$p[] = $t['term_id'];
 				}
-				$p[] = $t['term_id'];
 			}
 			wp_set_post_terms( $newid, $p, 'lf-presenter' );
 		}
