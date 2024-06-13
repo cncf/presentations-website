@@ -171,12 +171,6 @@ class Lf_Mu {
 			wp_schedule_event( time(), 'twicedaily', 'lf_sync_projects' );
 		}
 
-		// Sync programs with https://community.cncf.io/.
-		$this->loader->add_action( 'cncf_sync_programs', $plugin_admin, 'sync_programs' );
-		if ( ! wp_next_scheduled( 'cncf_sync_programs' ) ) {
-			wp_schedule_event( time(), 'twicedaily', 'cncf_sync_programs' );
-		}
-
 		// Get video views from YouTube for online programs.
 		$this->loader->add_action( 'cncf_get_program_views', $plugin_admin, 'get_program_views' );
 		if ( ! wp_next_scheduled( 'cncf_get_program_views' ) ) {
