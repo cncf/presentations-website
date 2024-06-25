@@ -91,7 +91,7 @@ foreach ( $remote_body as $pres ) {
 		$query->the_post();
 		$params['ID'] = get_the_ID(); // post to update.
 	}
-
+var_dump($params);
 	$newid = wp_insert_post( $params ); // will insert or update the post as needed.
 
 	if ( $newid ) {
