@@ -48,6 +48,9 @@ foreach ( $remote_body as $pres ) {
 		if ( array_key_exists( 1, $matches ) ) {
 			$lf_presentation_slides_url = 'https://www.slideshare.net/slideshow/embed_code/' . $matches[1];
 		}
+
+		// decode the url before storing.
+		$lf_presentation_slides_url = rawurldecode( $lf_presentation_slides_url );
 	}
 
 	$params = array(
